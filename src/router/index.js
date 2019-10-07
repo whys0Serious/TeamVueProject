@@ -6,6 +6,9 @@ import registry from '@/components/后台/registry'
 import index from '@/components/后台/index'
 import usershow from '@/components/后台/usershow'
 import update1 from '@/components/后台/update'
+import ind from '@/components/index'
+
+
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
@@ -13,6 +16,11 @@ Vue.use(ElementUI);
 Vue.use(Router)
 export default new Router({
   routes: [
+    {
+    path: '/',
+    name: 'ind',
+    component: ind
+    },
     {
       path: '/index',
       name: 'index',
