@@ -17,7 +17,7 @@
           <!--<div id="src"> <img src="https://shared-https.ydstatic.com/ke/web/v1.1.3/32aac580.png"/></div>-->
         </div>
         <!--登陆-->
-        <div class="login"><p><a href="">登陆</a></p></div>
+        <div class="login"><p><a href="http://localhost:8080/#/login">登陆</a></p></div>
       </div>
     </div>
     <router-view/>
