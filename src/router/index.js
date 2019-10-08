@@ -6,6 +6,7 @@ import registry from '@/components/后台/registry'
 import index from '@/components/后台/index'
 import usershow from '@/components/后台/usershow'
 import update1 from '@/components/后台/update'
+import Mannerge from '@/components/后台/Mannerge'
 import ind from '@/components/index'
 
 import CoursePage from '@/components/CoursePage'
@@ -59,6 +60,11 @@ export default new Router({
       path:'/MiddleCourse',
       name:'MiddleCourse',
       component:MiddleCourse
+    },
+    {
+      path:'/Mannerge',
+      name:'Mannerge',
+      component:Mannerge
     }
   ]
 })
