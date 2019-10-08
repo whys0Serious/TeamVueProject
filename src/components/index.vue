@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <!--导航栏-->
     <div id="daohang">
       <div class="daohang">
@@ -25,79 +25,37 @@
       <div class="hot_top"><h3>热门课程</h3></div>
       <div id="hot_foot">
         <a href="phone?action=one&bid=<%=phone.getBid() %>">
+          <div v-for="cs in course">
           <div class="cardd">
-            <span class="_8-iAp" >高中</span>
-            <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-            <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
+            <div v-if="cs.ctid==1">
+              <span class="_8-iAp" >小学</span>
+            </div>
+            <div v-if="cs.ctid==2">
+              <span class="_8-iAp" >初中</span>
+            </div>
+            <div v-if="cs.ctid==3">
+              <span class="_8-iAp" >高中</span>
+            </div>
+            <h1 class="classname">{{cs.cname}}</h1>
+            <div class="classtime">时间:{{cs.time}}<ins>|</ins>{{cs.cou_time}} 课时</div>
             <div class="tcher">
               <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
               <span>包易正</span>
             </div>
             <div class="foot">
               <div class="buy">
-                <span>已有1671人购买</span>
+                <span>已有{{cs.details}}人购买</span>
               </div>
               <div class="price">
-                <span class="buyprice">免费</span>
+                <div v-if="cs.price==0">
+                  <span class="buyprice">免费</span>
+                </div>
+                <div v-if="cs.price!=0">
+                  <span class="buyprice">{{cs.price}}</span>
+                </div>
               </div>
             </div>
           </div>
-        </a>
-        <a href="phone?action=one&bid=<%=phone.getBid() %>">
-          <div class="cardd">
-            <span class="_8-iAp" >高中</span>
-            <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-            <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
-            <div class="tcher">
-              <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-              <span>包易正</span>
-            </div>
-            <div class="foot">
-              <div class="buy">
-                <span>已有1671人购买</span>
-              </div>
-              <div class="price">
-                <span class="buyprice">免费</span>
-              </div>
-            </div>
-          </div>
-        </a>
-        <a href="phone?action=one&bid=<%=phone.getBid() %>">
-          <div class="cardd">
-            <span class="_8-iAp" >高中</span>
-            <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-            <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
-            <div class="tcher">
-              <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-              <span>包易正</span>
-            </div>
-            <div class="foot">
-              <div class="buy">
-                <span>已有1671人购买</span>
-              </div>
-              <div class="price">
-                <span class="buyprice">免费</span>
-              </div>
-            </div>
-          </div>
-        </a>
-        <a href="phone?action=one&bid=<%=phone.getBid() %>">
-          <div class="cardd_right">
-            <span class="_8-iAp" >高中</span>
-            <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-            <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
-            <div class="tcher">
-              <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-              <span>包易正</span>
-            </div>
-            <div class="foot">
-              <div class="buy">
-                <span>已有1671人购买</span>
-              </div>
-              <div class="price">
-                <span class="buyprice">免费</span>
-              </div>
-            </div>
           </div>
         </a>
       </div>
@@ -114,122 +72,74 @@
             <img style="width: 575px;height: 272px;" src="http://pylgiouvi.bkt.clouddn.com/%E5%B0%8F%E5%AD%A6.png"/>
           </div>
           <a href="phone?action=one&bid=<%=phone.getBid() %>">
+          <div v-for="(h,index) in primary">
+            <div v-if="index<6">
+            <div v-if="index<2">
             <div class="showcardd">
-              <span class="_8-iAp" >高中</span>
-              <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-              <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
+              <div v-if="h.ctid==1">
+                <span class="_8-iAp" >小学</span>
+              </div>
+              <div v-if="h.ctid==2">
+                <span class="_8-iAp" >初中</span>
+              </div>
+              <div v-if="h.ctid==3">
+                <span class="_8-iAp" >高中</span>
+              </div>
+              <h1 class="classname">{{h.cname}}</h1>
+              <div class="classtime">时间:{{h.time}}<ins>|</ins>{{h.cou_time}}课时</div>
               <div class="tcher">
                 <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
                 <span>包易正</span>
               </div>
               <div class="foot">
                 <div class="buy">
-                  <span>已有1671人购买</span>
+                  <span>已有{{h.details}}人购买</span>
                 </div>
                 <div class="price">
-                  <span class="buyprice">免费</span>
+                  <div v-if="h.price==0">
+                    <span class="buyprice">免费</span>
+                  </div>
+                  <div v-if="h.price!=0">
+                    <span class="buyprice">{{h.price}}</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </a>
-          <a href="phone?action=one&bid=<%=phone.getBid() %>">
-            <div class="showcardd">
-              <span class="_8-iAp" >高中</span>
-              <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-              <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
-              <div class="tcher">
-                <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                <span>包易正</span>
-              </div>
-              <div class="foot">
-                <div class="buy">
-                  <span>已有1671人购买</span>
+            </div>
+            <div v-if="index>=2">
+              <div class="showcarddfoot">
+                <div v-if="h.ctid==1">
+                  <span class="_8-iAp" >小学</span>
                 </div>
-                <div class="price">
-                  <span class="buyprice">免费</span>
+                <div v-if="h.ctid==2">
+                  <span class="_8-iAp" >初中</span>
+                </div>
+                <div v-if="h.ctid==3">
+                  <span class="_8-iAp" >高中</span>
+                </div>
+                <h1 class="classname">{{h.cname}}</h1>
+                <div class="classtime">时间:{{h.time}}<ins>|</ins>{{h.cou_time}}课时</div>
+                <div class="tcher">
+                  <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
+                  <span>包易正</span>
+                </div>
+                <div class="foot">
+                  <div class="buy">
+                    <span>已有{{h.details}}人购买</span>
+                  </div>
+                  <div class="price">
+                    <div v-if="h.price==0">
+                      <span class="buyprice">免费</span>
+                    </div>
+                    <div v-if="h.price!=0">
+                      <span class="buyprice">{{h.price}}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </a>
-
-          <a href="phone?action=one&bid=<%=phone.getBid() %>">
-            <div class="showcarddfoot">
-              <span class="_8-iAp" >高中</span>
-              <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-              <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
-              <div class="tcher">
-                <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                <span>包易正</span>
-              </div>
-              <div class="foot">
-                <div class="buy">
-                  <span>已有1671人购买</span>
-                </div>
-                <div class="price">
-                  <span class="buyprice">免费</span>
-                </div>
-              </div>
-            </div>
-          </a>
-
-          <a href="phone?action=one&bid=<%=phone.getBid() %>">
-            <div class="showcarddfoot">
-              <span class="_8-iAp" >高中</span>
-              <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-              <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
-              <div class="tcher">
-                <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                <span>包易正</span>
-              </div>
-              <div class="foot">
-                <div class="buy">
-                  <span>已有1671人购买</span>
-                </div>
-                <div class="price">
-                  <span class="buyprice">免费</span>
-                </div>
-              </div>
-            </div>
-          </a>
-
-          <a href="phone?action=one&bid=<%=phone.getBid() %>">
-            <div class="showcarddfoot">
-              <span class="_8-iAp" >高中</span>
-              <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-              <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
-              <div class="tcher">
-                <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                <span>包易正</span>
-              </div>
-              <div class="foot">
-                <div class="buy">
-                  <span>已有1671人购买</span>
-                </div>
-                <div class="price">
-                  <span class="buyprice">免费</span>
-                </div>
-              </div>
-            </div>
-          </a>
-
-          <a href="phone?action=one&bid=<%=phone.getBid() %>">
-            <div class="showcarddfoot_right">
-              <span class="_8-iAp" >高中</span>
-              <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-              <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
-              <div class="tcher">
-                <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                <span>包易正</span>
-              </div>
-              <div class="foot">
-                <div class="buy">
-                  <span>已有1671人购买</span>
-                </div>
-                <div class="price">
-                  <span class="buyprice">免费</span>
-                </div>
-              </div>
-            </div>
+          </div>
+          </div>
           </a>
         </div>
       </div>
@@ -244,119 +154,71 @@
             <img style="width: 575px;height: 272px;" src="http://pylgiouvi.bkt.clouddn.com/%E5%88%9D%E4%B8%AD.png"/>
           </div>
           <a href="phone?action=one&bid=<%=phone.getBid() %>">
-            <div class="showcardd">
-              <span class="_8-iAp" >高中</span>
-              <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-              <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
-              <div class="tcher">
-                <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                <span>包易正</span>
-              </div>
-              <div class="foot">
-                <div class="buy">
-                  <span>已有1671人购买</span>
+            <div v-for="(jun,index) in junior">
+              <div v-if="index<6">
+                <div v-if="index<2">
+                  <div class="showcardd">
+                    <div v-if="jun.ctid==1">
+                      <span class="_8-iAp" >小学</span>
+                    </div>
+                    <div v-if="jun.ctid==2">
+                      <span class="_8-iAp" >初中</span>
+                    </div>
+                    <div v-if="jun.ctid==3">
+                      <span class="_8-iAp" >高中</span>
+                    </div>
+                    <h1 class="classname">{{jun.cname}}</h1>
+                    <div class="classtime">时间:{{jun.time}}<ins>|</ins>{{jun.cou_time}}课时</div>
+                    <div class="tcher">
+                      <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
+                      <span>包易正</span>
+                    </div>
+                    <div class="foot">
+                      <div class="buy">
+                        <span>已有{{jun.details}}人购买</span>
+                      </div>
+                      <div class="price">
+                        <div v-if="jun.price==0">
+                          <span class="buyprice">免费</span>
+                        </div>
+                        <div v-if="jun.price!=0">
+                          <span class="buyprice">{{jun.price}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="price">
-                  <span class="buyprice">免费</span>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="phone?action=one&bid=<%=phone.getBid() %>">
-            <div class="showcardd">
-              <span class="_8-iAp" >高中</span>
-              <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-              <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
-              <div class="tcher">
-                <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                <span>包易正</span>
-              </div>
-              <div class="foot">
-                <div class="buy">
-                  <span>已有1671人购买</span>
-                </div>
-                <div class="price">
-                  <span class="buyprice">免费</span>
-                </div>
-              </div>
-            </div>
-          </a>
-
-          <a href="phone?action=one&bid=<%=phone.getBid() %>">
-            <div class="showcarddfoot">
-              <span class="_8-iAp" >高中</span>
-              <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-              <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
-              <div class="tcher">
-                <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                <span>包易正</span>
-              </div>
-              <div class="foot">
-                <div class="buy">
-                  <span>已有1671人购买</span>
-                </div>
-                <div class="price">
-                  <span class="buyprice">免费</span>
-                </div>
-              </div>
-            </div>
-          </a>
-
-          <a href="phone?action=one&bid=<%=phone.getBid() %>">
-            <div class="showcarddfoot">
-              <span class="_8-iAp" >高中</span>
-              <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-              <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
-              <div class="tcher">
-                <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                <span>包易正</span>
-              </div>
-              <div class="foot">
-                <div class="buy">
-                  <span>已有1671人购买</span>
-                </div>
-                <div class="price">
-                  <span class="buyprice">免费</span>
-                </div>
-              </div>
-            </div>
-          </a>
-
-          <a href="phone?action=one&bid=<%=phone.getBid() %>">
-            <div class="showcarddfoot">
-              <span class="_8-iAp" >高中</span>
-              <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-              <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
-              <div class="tcher">
-                <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                <span>包易正</span>
-              </div>
-              <div class="foot">
-                <div class="buy">
-                  <span>已有1671人购买</span>
-                </div>
-                <div class="price">
-                  <span class="buyprice">免费</span>
-                </div>
-              </div>
-            </div>
-          </a>
-
-          <a href="phone?action=one&bid=<%=phone.getBid() %>">
-            <div class="showcarddfoot_right">
-              <span class="_8-iAp" >高中</span>
-              <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-              <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
-              <div class="tcher">
-                <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                <span>包易正</span>
-              </div>
-              <div class="foot">
-                <div class="buy">
-                  <span>已有1671人购买</span>
-                </div>
-                <div class="price">
-                  <span class="buyprice">免费</span>
+                <div v-if="index>=2">
+                  <div class="showcarddfoot">
+                    <div v-if="jun.ctid==1">
+                      <span class="_8-iAp" >小学</span>
+                    </div>
+                    <div v-if="jun.ctid==2">
+                      <span class="_8-iAp" >初中</span>
+                    </div>
+                    <div v-if="jun.ctid==3">
+                      <span class="_8-iAp" >高中</span>
+                    </div>
+                    <h1 class="classname">{{jun.cname}}</h1>
+                    <div class="classtime">时间:{{jun.time}}<ins>|</ins>{{jun.cou_time}}课时</div>
+                    <div class="tcher">
+                      <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
+                      <span>包易正</span>
+                    </div>
+                    <div class="foot">
+                      <div class="buy">
+                        <span>已有{{jun.details}}人购买</span>
+                      </div>
+                      <div class="price">
+                        <div v-if="jun.price==0">
+                          <span class="buyprice">免费</span>
+                        </div>
+                        <div v-if="jun.price!=0">
+                          <span class="buyprice">{{jun.price}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -373,119 +235,71 @@
             <img style="width: 575px;height: 272px;" src="http://pylgiouvi.bkt.clouddn.com/%E9%AB%98%E4%B8%AD.png"/>
           </div>
           <a href="phone?action=one&bid=<%=phone.getBid() %>">
-            <div class="showcardd">
-              <span class="_8-iAp" >高中</span>
-              <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-              <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
-              <div class="tcher">
-                <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                <span>包易正</span>
-              </div>
-              <div class="foot">
-                <div class="buy">
-                  <span>已有1671人购买</span>
+            <div v-for="(hig,index) in hightc">
+              <div v-if="index<6">
+                <div v-if="index<2">
+                  <div class="showcardd">
+                    <div v-if="hig.ctid==1">
+                      <span class="_8-iAp" >小学</span>
+                    </div>
+                    <div v-if="hig.ctid==2">
+                      <span class="_8-iAp" >初中</span>
+                    </div>
+                    <div v-if="hig.ctid==3">
+                      <span class="_8-iAp" >高中</span>
+                    </div>
+                    <h1 class="classname">{{hig.cname}}</h1>
+                    <div class="classtime">时间:{{hig.time}}<ins>|</ins>{{hig.cou_time}}课时</div>
+                    <div class="tcher">
+                      <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
+                      <span>包易正</span>
+                    </div>
+                    <div class="foot">
+                      <div class="buy">
+                        <span>已有{{hig.details}}人购买</span>
+                      </div>
+                      <div class="price">
+                        <div v-if="hig.price==0">
+                          <span class="buyprice">免费</span>
+                        </div>
+                        <div v-if="hig.price!=0">
+                          <span class="buyprice">{{hig.price}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="price">
-                  <span class="buyprice">免费</span>
-                </div>
-              </div>
-            </div>
-          </a>
-          <a href="phone?action=one&bid=<%=phone.getBid() %>">
-            <div class="showcardd">
-              <span class="_8-iAp" >高中</span>
-              <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-              <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
-              <div class="tcher">
-                <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                <span>包易正</span>
-              </div>
-              <div class="foot">
-                <div class="buy">
-                  <span>已有1671人购买</span>
-                </div>
-                <div class="price">
-                  <span class="buyprice">免费</span>
-                </div>
-              </div>
-            </div>
-          </a>
-
-          <a href="phone?action=one&bid=<%=phone.getBid() %>">
-            <div class="showcarddfoot">
-              <span class="_8-iAp" >高中</span>
-              <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-              <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
-              <div class="tcher">
-                <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                <span>包易正</span>
-              </div>
-              <div class="foot">
-                <div class="buy">
-                  <span>已有1671人购买</span>
-                </div>
-                <div class="price">
-                  <span class="buyprice">免费</span>
-                </div>
-              </div>
-            </div>
-          </a>
-
-          <a href="phone?action=one&bid=<%=phone.getBid() %>">
-            <div class="showcarddfoot">
-              <span class="_8-iAp" >高中</span>
-              <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-              <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
-              <div class="tcher">
-                <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                <span>包易正</span>
-              </div>
-              <div class="foot">
-                <div class="buy">
-                  <span>已有1671人购买</span>
-                </div>
-                <div class="price">
-                  <span class="buyprice">免费</span>
-                </div>
-              </div>
-            </div>
-          </a>
-
-          <a href="phone?action=one&bid=<%=phone.getBid() %>">
-            <div class="showcarddfoot">
-              <span class="_8-iAp" >高中</span>
-              <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-              <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
-              <div class="tcher">
-                <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                <span>包易正</span>
-              </div>
-              <div class="foot">
-                <div class="buy">
-                  <span>已有1671人购买</span>
-                </div>
-                <div class="price">
-                  <span class="buyprice">免费</span>
-                </div>
-              </div>
-            </div>
-          </a>
-
-          <a href="phone?action=one&bid=<%=phone.getBid() %>">
-            <div class="showcarddfoot_right">
-              <span class="_8-iAp" >高中</span>
-              <h1 class="classname">透过真题看高考，五年地理真题精讲</h1>
-              <div class="classtime">时间：2019.10.02 22:00 <ins>|</ins> 1 课时</div>
-              <div class="tcher">
-                <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                <span>包易正</span>
-              </div>
-              <div class="foot">
-                <div class="buy">
-                  <span>已有1671人购买</span>
-                </div>
-                <div class="price">
-                  <span class="buyprice">免费</span>
+                <div v-if="index>=2">
+                  <div class="showcarddfoot">
+                    <div v-if="hig.ctid==1">
+                      <span class="_8-iAp" >小学</span>
+                    </div>
+                    <div v-if="hig.ctid==2">
+                      <span class="_8-iAp" >初中</span>
+                    </div>
+                    <div v-if="hig.ctid==3">
+                      <span class="_8-iAp" >高中</span>
+                    </div>
+                    <h1 class="classname">{{hig.cname}}</h1>
+                    <div class="classtime">时间:{{hig.time}}<ins>|</ins>{{hig.cou_time}}课时</div>
+                    <div class="tcher">
+                      <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
+                      <span>包易正</span>
+                    </div>
+                    <div class="foot">
+                      <div class="buy">
+                        <span>已有{{hig.details}}人购买</span>
+                      </div>
+                      <div class="price">
+                        <div v-if="hig.price==0">
+                          <span class="buyprice">免费</span>
+                        </div>
+                        <div v-if="hig.price!=0">
+                          <span class="buyprice">{{hig.price}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -508,6 +322,7 @@
 
 
 <script>
+  import axios from 'axios'
   export default {
     name: '',
     data(){
@@ -517,8 +332,33 @@
           {src:'http://pylgiouvi.bkt.clouddn.com/%E8%BD%AE%E6%92%AD%E5%9B%BE2.png'},
           {src:'http://pylgiouvi.bkt.clouddn.com/%E8%BD%AE%E6%92%AD%E5%9B%BE3.png'},
           {src:'http://pylgiouvi.bkt.clouddn.com/%E8%BD%AE%E6%92%AD%E5%9B%BE4.png'},
-        ]
+        ],
+        course:[], //推荐
+        primary:[], //小学
+        junior:[], //初中
+        hightc:[], //高中
       }
+    },
+    mounted(){
+      axios.get("api/findShow/推荐").then(res=>{
+        console.log(res.data)
+        this.course=res.data;
+      })
+      //小学
+      axios.get("api/findAllCourse/1").then(res=>{
+        console.log(res.data)
+        this.primary=res.data;
+      })
+      //初中
+      axios.get("api/findAllCourse/2").then(res=>{
+        console.log(res.data)
+        this.junior=res.data;
+      })
+      //高中
+      axios.get("api/findAllCourse/3").then(res=>{
+        console.log(res.data)
+        this.hightc=res.data;
+      })
     }
   }
 </script>
@@ -593,7 +433,7 @@
   }
   .cardd{
     float: left;
-    margin-right: 30px;
+    margin-right: 23px;
     width: 270px;
     height: 280px;
     border: 1px solid #ebebeb;
@@ -721,6 +561,7 @@
     /*background-color: blueviolet;*/
   }
   .xueimg{
+    margin-right: 15px;
     float: left;
     width: 575px;
     height: 272px;
@@ -734,7 +575,8 @@
   }
   .showcardd{
     float: left;
-    margin-left: 30px;
+    margin-right: 23px;
+
     width: 270px;
     height: 270px;
     border: 1px solid #ebebeb;
@@ -747,7 +589,7 @@
   }
   .showcarddfoot{
     float: left;
-    margin-right: 30px;
+    margin-right: 23px;
     margin-top: 20px;
     width: 270px;
     height: 270px;
