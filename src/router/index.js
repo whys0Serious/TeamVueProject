@@ -9,6 +9,7 @@ import update1 from '@/components/后台/update'
 import selectcou from '@/components/后台/selectcou'
 import Mannerge from '@/components/后台/Mannerge'
 import ind from '@/components/index'
+import CourseInfo from '@/components/CourseInfo'
 import userselect from '@/components/后台/userselect'
 
 import CoursePage from '@/components/CoursePage'
@@ -69,6 +70,13 @@ export default new Router({
     {
       path:'/Mannerge',
       name:'Mannerge',
+      component:Mannerge
+    },
+    {
+      path:'/CourseInfo',
+      name:'CourseInfo',
+      component:CourseInfo
+    },
       component:Mannerge,
       children:[
         {path:'selectcou',name:'selectcou',component:selectcou},
