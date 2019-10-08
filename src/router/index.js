@@ -6,6 +6,7 @@ import registry from '@/components/后台/registry'
 import index from '@/components/后台/index'
 import usershow from '@/components/后台/usershow'
 import update1 from '@/components/后台/update'
+import foegetpwd from '@/components/后台/foegetpwd.vue'
 import Mannerge from '@/components/后台/Mannerge'
 import ind from '@/components/index'
 
@@ -24,6 +25,9 @@ export default new Router({
     path: '/',
     name: 'ind',
     component: ind
+    },
+    {path:'/usershow',
+      component:usershow
     },
     {
       path: '/index',

@@ -36,18 +36,18 @@
         <el-table-column
           prop="cid"
           label="课程编号"
-          width="180">
+          width="120">
         </el-table-column>
         <el-table-column
           prop="cname"
           label="课程名称"
-          width="180">
+          width="320">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top">
-              <p>姓名: {{ scope.row.name }}</p>
-              <p>住址: {{ scope.row.address }}</p>
+              <p>课程名称: {{ scope.row.cname }}</p>
+              <p>提示: {{ scope.row.info }}</p>
               <div slot="reference" class="name-wrapper">
-                <el-tag size="medium">{{ scope.row.name }}</el-tag>
+                <el-tag size="medium">{{ scope.row.cname }}</el-tag>
               </div>
             </el-popover>
           </template>
@@ -68,14 +68,34 @@
           width="180">
           <template slot-scope="scope">
             <i class="el-icon-time"></i>
-            <span style="margin-left: 10px">{{ scope.row.date }}</span>
+            <span style="margin-left: 10px">{{ scope.row.time }}</span>
           </template>
         </el-table-column>
         <el-table-column
-          prop="mainpic"
           label="课程图片"
-          width="200">
+          prop="mainpic"
+          width="120">
+          <template   slot-scope="scope">
+            <el-image
+              style="width: 100px; height: 100px"
+              :src="scope.row.mainpic"
+             ></el-image>
+            <el-upload
+              class="avatar-uploader"
+              action="api/uploaduseima"
+              :show-file-list="false"
+              :on-success="handleAvatarSuccess"
+              :before-upload="beforeAvatarUpload">
+              <img v-if="imageUrl" :src="imageUrl" class="avatar">
+              <i class="el-icon-more"></i>
+            </el-upload>
+          </template>
         </el-table-column>
+        <!--<el-table-column-->
+          <!--prop="mainpic"-->
+          <!--label="课程图片"-->
+          <!--width="200">-->
+        <!--</el-table-column>-->
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button
@@ -108,7 +128,7 @@
   /*左边菜单*/
   #left{
     background-color:linen;
-    width: 280px;
+    width: 200px;
     height: 600px;
     float: left;
   }
@@ -134,7 +154,7 @@
         total:50,
         params:{
           page:1,
-          size:10
+          size:5
         }
       }
     },
@@ -152,9 +172,8 @@
             this.total=res.data.total;
         })
       },
-      changepage:function (page) {
-        alert(page)
-        this.params.page=page;
+      changePage:function (e) {
+       this.params.page=e
         this.query();
       },
 
