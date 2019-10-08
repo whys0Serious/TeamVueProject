@@ -70,18 +70,16 @@ export default new Router({
     {
       path:'/Mannerge',
       name:'Mannerge',
-      component:Mannerge
-    },
-    {
-      path:'/CourseInfo',
-      name:'CourseInfo',
-      component:CourseInfo
-    },
       component:Mannerge,
       children:[
         {path:'selectcou',name:'selectcou',component:selectcou},
         {path:'userselect',name:'userselect',component:userselect}
       ]
+    },
+    {
+      path:'/CourseInfo',
+      name:'CourseInfo',
+      component:CourseInfo
     },
   ]
 })
