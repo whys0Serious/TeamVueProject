@@ -6,9 +6,10 @@ import registry from '@/components/后台/registry'
 import index from '@/components/后台/index'
 import usershow from '@/components/后台/usershow'
 import update1 from '@/components/后台/update'
-import foegetpwd from '@/components/后台/foegetpwd.vue'
+import selectcou from '@/components/后台/selectcou'
 import Mannerge from '@/components/后台/Mannerge'
 import ind from '@/components/index'
+import userselect from '@/components/后台/userselect'
 
 import CoursePage from '@/components/CoursePage'
 import HighCourse from '@/components/HighCourse'
@@ -22,9 +23,9 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-    path: '/',
-    name: 'ind',
-    component: ind
+      path: '/',
+      name: 'ind',
+      component: ind
     },
     {path:'/usershow',
       component:usershow
@@ -32,7 +33,6 @@ export default new Router({
     {
       path: '/index',
       name: 'index',
-
       component: index,
       children:[
         {path:'usershow',component:usershow},
@@ -69,7 +69,11 @@ export default new Router({
     {
       path:'/Mannerge',
       name:'Mannerge',
-      component:Mannerge
-    }
+      component:Mannerge,
+      children:[
+        {path:'selectcou',name:'selectcou',component:selectcou},
+        {path:'userselect',name:'userselect',component:userselect}
+      ]
+    },
   ]
 })
