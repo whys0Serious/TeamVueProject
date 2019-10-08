@@ -1,44 +1,102 @@
-<template>
-  <div>
-    <el-menu
-      :default-active="activeIndex2"
-      class="el-menu-demo"
-      mode="horizontal"
-      @select="handleSelect"
-      background-color="#aaa"
-      text-color="#fff"
-      active-text-color="#ffd04b">
-      <el-menu-item index="1">处理中心</el-menu-item>
-      <el-submenu index="2">
-        <template slot="title">我的工作台</template>
-        <el-menu-item index="2-1"><router-link to="/index/usershow">查看用户</router-link></el-menu-item>
-        <el-menu-item index="2-2"><router-link to="/index/usershow">查看商品</router-link></el-menu-item>
-        <el-menu-item index="2-3"><router-link to="/index/usershow">查看管理员</router-link></el-menu-item>
-        <el-submenu index="2-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="2-4-1">选项1</el-menu-item>
-          <el-menu-item index="2-4-2">选项2</el-menu-item>
-          <el-menu-item index="2-4-3">选项3</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-      <el-menu-item index="3" disabled>消息中心</el-menu-item>
-      <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
-    </el-menu>
-    <router-view></router-view>
+<template><div>
+<el-input
+  placeholder="输入关键字进行过滤"
+  v-model="filterText">
+</el-input>
+
+<el-tree
+  class="filter-tree"
+  :data="data"
+  :props="defaultProps"
+  default-expand-all
+  :filter-node-method="filterNode"
+  ref="tree">
+</el-tree>
+  <div class="right">
+
   </div>
-</template>
+</div></template>
 <script>
   export default {
+    watch: {
+      filterText(val) {
+        this.$refs.tree.filter(val);
+      }
+    },
+
+    methods: {
+      filterNode(value, data) {
+        if (!value) return true;
+        return data.label.indexOf(value) !== -1;
+      }
+    },
+
     data() {
       return {
-        activeIndex: '1',
-        activeIndex2: '1'
+        filterText: '',
+        data: [{
+          id: 1,
+          label: '用户',
+          children: [{
+            id: 4,
+            label: '二级 1-1',
+            children: [{
+              id: 9,
+              label: '三级 1-1-1'
+            }, {
+              id: 10,
+              label: '三级 1-1-2'
+            }]
+          }]
+        }, {
+          id: 2,
+          label: ' 课程',
+          children: [{
+            id: 5,
+            label: '二级 2-1'
+          }, {
+            id: 6,
+            label: '二级 2-2'
+          }]
+        }, {
+          id: 3,
+          label: ' 管理员',
+          children: [{
+            id: 7,
+            label: '二级 3-1'
+          }, {
+            id: 8,
+            label: '二级 3-2'
+          }]
+        },
+          {
+            id: 3,
+            label: ' 购物车',
+            children: [{
+              id: 7,
+              label: '二级 3-1'
+            }, {
+              id: 8,
+              label: '二级 3-2'
+            }]
+          },
+          {
+            id: 3,
+            label: ' 邮箱',
+            children: [{
+              id: 7,
+              label: '二级 3-1'
+            }, {
+              id: 8,
+              label: '二级 3-2'
+            }]
+          },
+        ],
+        defaultProps: {
+          children: 'children',
+          label: 'label'
+        }
       };
-    },
-    methods: {
-      handleSelect(key, keyPath) {
-        console.log(key, keyPath);
-      }
     }
-  }
+  };
 </script>

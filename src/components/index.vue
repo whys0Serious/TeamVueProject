@@ -3,9 +3,9 @@
     <!--导航栏-->
     <div id="daohang">
       <div class="daohang">
-        <div class="fenlei"><a href="">小学</a></div>
-        <div class="fenlei"><a href="">初中</a></div>
-        <div class="fenlei"><a href="">高中</a></div>
+        <div class="fenlei"><a href="http://localhost:8080/#/CoursePage">小学</a></div>
+        <div class="fenlei"><a href="http://localhost:8080/#/MiddleCourse">初中</a></div>
+        <div class="fenlei"><a href="http://localhost:8080/#/HighCourse">高中</a></div>
       </div>
     </div>
 

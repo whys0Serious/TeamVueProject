@@ -18,10 +18,8 @@
         <el-input v-model="ruleForm.name"></el-input>
       </el-form-item>
       <el-form-item label="性别">
-        <el-radio-group v-model="user.sex">
-          <el-radio label="男" value="男"></el-radio>
-          <el-radio label="女" value="女"></el-radio>
-        </el-radio-group>
+        <el-radio v-model="ruleForm.sex" label="男">男</el-radio>
+        <el-radio v-model="ruleForm.sex" label="女">女</el-radio>
       </el-form-item>
       <el-form-item label="密码" prop="pass">
         <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
@@ -151,7 +149,7 @@
           checkPass:'',
           email:'',
           code:'',
-          sex:'',
+          sex:'男',
           name:''
         },
         loading:false,
@@ -189,6 +187,9 @@
       };
     },
     methods: {
+        abc:function () {
+          alert(this.ruleForm.sex)
+        },
       handleAvatarSuccess(res, file) {
         this.imageUrl = URL.createObjectURL(file.raw);
         this.user.imageUrl=res
