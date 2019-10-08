@@ -8,6 +8,9 @@ import usershow from '@/components/后台/usershow'
 import update1 from '@/components/后台/update'
 import ind from '@/components/index'
 
+import CoursePage from '@/components/CoursePage'
+import HighCourse from '@/components/HighCourse'
+import MiddleCourse from '@/components/MiddleCourse'
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -42,6 +45,20 @@ export default new Router({
       name: 'registry',
       component: registry
     },
-
+    {
+      path:'/CoursePage',
+      name:'CoursePage',
+      component:CoursePage
+    },
+    {
+      path:'/HighCourse',
+      name:'HighCourse',
+      component:HighCourse
+    },
+    {
+      path:'/MiddleCourse',
+      name:'MiddleCourse',
+      component:MiddleCourse
+    }
   ]
 })
