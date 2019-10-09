@@ -97,7 +97,6 @@ export default new Router({
       name:'CourseInfo',
       component:CourseInfo
     },
-    },
     {
       path:"/cash",
       component:cash
@@ -105,6 +104,6 @@ export default new Router({
     {
       path:'/foegetpwd',
       component:foegetpwd
-    }
+    },
   ]
 })
