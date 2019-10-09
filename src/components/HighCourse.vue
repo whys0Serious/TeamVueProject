@@ -2,7 +2,7 @@
   <div>
     <div id="title1">
       <el-row :gutter="20">
-        <el-col :span="6"><div class="grid-content bg-purple"><h2>小学</h2></div></el-col>
+        <el-col :span="6"><div class="grid-content bg-purple"><h2>高中</h2></div></el-col>
         <el-col :span="6"><div class="grid-content bg-purple"><el-link type="info" :underline="false" @click="searchAll">精选</el-link></div></el-col>
         <el-col :span="6"><div class="grid-content bg-purple"><el-link type="info" :underline="false" @click="searchChinese">语文</el-link></div></el-col>
         <el-col :span="6"><div class="grid-content bg-purple"><el-link type="info" :underline="false" @click="searchMath">数学</el-link></div></el-col>

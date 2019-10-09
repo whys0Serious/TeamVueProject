@@ -13,7 +13,8 @@
     <div class="courseinfo"><span>讲师联系邮箱：{{teacher.themail}}</span></div>
     <div id="button"><el-button style="border-radius:0px;background-color: sandybrown;border: 0px; width: 350px;height: 55px">
       <span style="margin-left: 70px;color: white;font-size: large;font-weight: bold"><router-link
-        :to="{name:'cart',params:{thname:teacher.thname,coutime:course.coutime,price:course.price,tips:teacher.themail
+        :to="{name:'cart',params:{thname:teacher.thname,coutime:course.coutime,price:course.price,tips:teacher.themail,
+        cname:course.cname
       }}">立即报名</router-link></span>
       <span style="color:yellow;font-weight: bolder;margin-left:70px;font-size: large">￥{{course.price}}</span></el-button></div>
   </div>

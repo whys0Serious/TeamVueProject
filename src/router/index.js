@@ -19,9 +19,11 @@ import userselect from '@/components/后台/userselect'
 import CoursePage from '@/components/CoursePage'
 import HighCourse from '@/components/HighCourse'
 import MiddleCourse from '@/components/MiddleCourse'
+import ApplyText from '@/components/后台/ApplyText'
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+
 
 Vue.use(ElementUI);
 Vue.use(Router)
@@ -106,5 +108,10 @@ export default new Router({
       path:'/foegetpwd',
       component:foegetpwd
     },
+    {
+      path:'/ApplyText',
+      component:ApplyText,
+      name:'ApplyText'
+    }
   ]
 })
