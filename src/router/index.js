@@ -8,6 +8,10 @@ import usershow from '@/components/后台/usershow'
 import update1 from '@/components/后台/update'
 import selectcou from '@/components/后台/selectcou'
 import Mannerge from '@/components/后台/Mannerge'
+import cash from '@/components/后台/cash'
+import cart from '@/components/后台/cart'
+import blank from '@/components/后台/blank'
+import foegetpwd from '@/components/后台/foegetpwd'
 import ind from '@/components/index'
 import CourseInfo from '@/components/CourseInfo'
 import userselect from '@/components/后台/userselect'
@@ -31,6 +35,10 @@ export default new Router({
     },
     {path:'/usershow',
       component:usershow
+    },
+    {
+      path:'/update',
+      component:update1
     },
     {
       path: '/index',
@@ -74,8 +82,15 @@ export default new Router({
       component:Mannerge,
       children:[
         {path:'selectcou',name:'selectcou',component:selectcou},
-        {path:'userselect',name:'userselect',component:userselect}
+        {path:'addCourse',name:'addCourse',component:addCourse},
+        {path:'updateCourse/:id',name:'updateCourse',component:updateCourse},
+        {path:'userselect',name:'userselect',component:userselect},
       ]
+    },
+    {
+      path:"/cart",
+      name:'cart',
+      component:cart
     },
     {
       path:'/useradd/{id}',
@@ -87,6 +102,23 @@ export default new Router({
       name:'CourseInfo',
       component:CourseInfo
     },
+    {
+      path:"/cash",
+      component:cash
+    },
+    {
+      path:'/foegetpwd',
+      component:foegetpwd
+    },
+    {
+      path:'/ApplyText',
+      component:ApplyText,
+      name:'ApplyText'
+    },
+    {
+      path:'/adminshow',
+      component:adminshow
+    }
 
   ]
 })
