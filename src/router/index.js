@@ -118,6 +118,14 @@ export default new Router({
     {
       path:'/adminshow',
       component:adminshow
+    },
+    {
+      path:'/adminadd',
+      component:adminadd
+    },
+    {
+      path:'/adminupdate',
+      component:adminupdate
     }
   ]
 })

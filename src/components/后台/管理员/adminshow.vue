@@ -1,33 +1,22 @@
 <template>
-  <div><!--
-   <el-table
-    :data="user"
-    border
-    style="width: 80%;">
-    <el-table-column
-      label="图片"
-      prop="imageUrl"
-      fixed
-      width="120">-->
-    <el-table
-      :data="user"
-     >
-      <el-table-column
-        lable="他打"
-        prop="id"
-      >
-      </el-table-column>
+  <div><h1>das</h1>
+    <el-table :data="admin">
+      <el-table-column prop="name"></el-table-column>
     </el-table>
   </div>
 </template>
 <script>
-  export default{
-      data(){
-          return{
-              user:[
-                {id:'dasd',}
-              ],
-          }
-      }
+  import axios from 'axios'
+export default{
+    data(){
+        return{
+            admin:[]
+        }
+    },
+  mounted(){
+        axios.get("api/findalldmin").then(res=>{
+            this.admin=res.data
+        })
   }
+}
 </script>

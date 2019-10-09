@@ -82,7 +82,11 @@
       },
       getpwd:function () {
         if(this.user.code==this.code1){
-          axios.get("api/updatepwd?name="+this.user.name+"$pass="+this.user.pass).then(res=>{
+          axios.get("api/updatepwd?name="+this.user.name+"&pass="+this.user.pass).then(res=>{
+              if(res.data!=null){
+                this.$message.success("修改成功,返回登陆页面")
+                this.$router.push("/login")
+              }
 
           })
         }else {

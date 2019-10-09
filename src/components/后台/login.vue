@@ -101,13 +101,12 @@
         this.user.pass=this.ruleForm.pass
         console.log(this.user)
         axios.post("api/login",{"uname":this.user.uname,"pass": this.user.pass}) .then(res=>{
-          if(this.checked){
-
-            axios.get("api/rememberme?name="+this.user.uname+"&pass="+this.user.pass,) .then(res=>{
-            })
-          }
           this.$message(res.data)
           if(res.data=="登陆成功"){
+            if(this.checked){
+              axios.get("api/rememberme?name="+this.user.uname+"&pass="+this.user.pass,) .then(res=>{
+              })
+            }
               this.$router.push("/")
             this.$router.go(0);
           }
