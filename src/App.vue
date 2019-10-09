@@ -50,8 +50,8 @@
    methods:{
      logout:function () {
        axios.get("api/logout").then(res=>{
-           if(res.data=="注销成功")
-               this.$router.replace({path:"/"})
+//           if(res.data=="注销成功")
+//               this.$router.replace({path:"/"})
        })
      }
    },
