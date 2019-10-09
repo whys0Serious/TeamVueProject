@@ -108,7 +108,7 @@ export default new Router({
       path:'/ApplyText',
       component:ApplyText,
       name:'ApplyText'
-    }
+    },
     {
       path:'/adminshow',
       component:adminshow
