@@ -11,6 +11,8 @@ import Mannerge from '@/components/后台/Mannerge'
 import ind from '@/components/index'
 import CourseInfo from '@/components/CourseInfo'
 import userselect from '@/components/后台/userselect'
+import addCourse from '@/components/后台/addCourse'
+import updateCourse from '@/components/后台/updateCourse'
 
 import CoursePage from '@/components/CoursePage'
 import HighCourse from '@/components/HighCourse'
@@ -73,7 +75,9 @@ export default new Router({
       component:Mannerge,
       children:[
         {path:'selectcou',name:'selectcou',component:selectcou},
-        {path:'userselect',name:'userselect',component:userselect}
+        {path:'addCourse',name:'addCourse',component:addCourse},
+        {path:'updateCourse/:id',name:'updateCourse',component:updateCourse},
+        {path:'userselect',name:'userselect',component:userselect},
       ]
     },
     {
