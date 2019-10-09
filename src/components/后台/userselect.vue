@@ -52,7 +52,7 @@
         label="操作"
         width="200">
         <template slot-scope="scope">
-          <el-button type="primary" icon="el-icon-edit" circle  @click="handleClick(scope.row)" ></el-button>
+          <el-button type="primary" icon="el-icon-edit" circle  @click="updateuseradd(scope.row)" ></el-button>
           <el-button type="danger" icon="el-icon-delete" circle @click="deleteuser(scope.row)"></el-button>
         </template>
       </el-table-column>
@@ -113,11 +113,14 @@
       }
     },
     methods:{
+      updateuseradd:function (val) {
+          this.$router.push({name:"updateuser",params:{id:val.uid}})
+      },
       imageURL123:function (val) {
         alert(val)
       },
       handleClick:function(val){
-        location.href.val.imageUrl
+
       },
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`);

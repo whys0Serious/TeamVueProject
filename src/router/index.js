@@ -5,7 +5,7 @@ import login from '@/components/后台/login'
 import registry from '@/components/后台/registry'
 import index from '@/components/后台/index'
 import usershow from '@/components/后台/usershow'
-import update1 from '@/components/后台/update'
+import updateuser from '@/components/后台/updateuser'
 import selectcou from '@/components/后台/selectcou'
 import Mannerge from '@/components/后台/Mannerge'
 import cash from '@/components/后台/cash'
@@ -38,21 +38,18 @@ export default new Router({
       name: 'ind',
       component: ind
     },
+    {
+      path: '/updateuser',
+      name: 'updateuser',
+      component: updateuser
+    },
     {path:'/usershow',
       component:usershow
-    },
-    {
-      path:'/update',
-      component:update1
     },
     {
       path: '/index',
       name: 'index',
       component: index,
-      children:[
-        {path:'usershow',component:usershow},
-        {path:'update',component:update1}
-      ]
 
     },
     {
