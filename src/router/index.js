@@ -10,7 +10,6 @@ import selectcou from '@/components/后台/selectcou'
 import Mannerge from '@/components/后台/Mannerge'
 import cash from '@/components/后台/cash'
 import cart from '@/components/后台/cart'
-import blank from '@/components/后台/blank'
 import foegetpwd from '@/components/后台/foegetpwd'
 import ind from '@/components/index'
 import CourseInfo from '@/components/CourseInfo'
@@ -19,6 +18,7 @@ import userselect from '@/components/后台/userselect'
 import CoursePage from '@/components/CoursePage'
 import HighCourse from '@/components/HighCourse'
 import MiddleCourse from '@/components/MiddleCourse'
+import ApplyText from '@/components/后台/ApplyText'
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -81,8 +81,6 @@ export default new Router({
       component:Mannerge,
       children:[
         {path:'selectcou',name:'selectcou',component:selectcou},
-        {path:'addCourse',name:'addCourse',component:addCourse},
-        {path:'updateCourse/:id',name:'updateCourse',component:updateCourse},
         {path:'userselect',name:'userselect',component:userselect},
       ]
     },
@@ -109,9 +107,5 @@ export default new Router({
       component:ApplyText,
       name:'ApplyText'
     },
-    {
-      path:'/adminshow',
-      component:adminshow
-    }
   ]
 })
