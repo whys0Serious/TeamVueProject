@@ -8,19 +8,15 @@
     <div id="coursetitle"><span>{{course.cname}}</span></div>
     <div class="courseinfo"><span>主讲老师：{{teacher.thname}}</span></div>
     <div class="courseinfo"><span>课程时长：{{course.coutime}}</span></div>
-    <div class="courseinfo"><span>开课时间：{{course.time}}</span></div>
+    <div class="courseinfo"><span>开课时间：{{course.time|formatTime('yyyy-MM-dd')}}</span></div>
     <div class="courseinfo"><span>已报名：{{course.details}}人</span></div>
     <div class="courseinfo"><span>讲师联系邮箱：{{teacher.themail}}</span></div>
     <div id="button"><el-button style="border-radius:0px;background-color: sandybrown;border: 0px; width: 350px;height: 55px">
-      <span style="margin-left: 70px;color: white;font-size: large;font-weight: bold">立即报名</span>
+      <span style="margin-left: 70px;color: white;font-size: large;font-weight: bold"><router-link
+        :to="{name:'cart',params:{thname:teacher.thname,coutime:course.coutime,price:course.price,tips:teacher.themail
+      }}">立即报名</router-link></span>
       <span style="color:yellow;font-weight: bolder;margin-left:70px;font-size: large">￥{{course.price}}</span></el-button></div>
   </div>
-  <!--<div id="mainpic1">-->
-    <!---->
-  <!--</div>-->
-  <!--<div id="buyinfo">-->
-
-  <!--</div>-->
 </div>
   </div>
 </template>

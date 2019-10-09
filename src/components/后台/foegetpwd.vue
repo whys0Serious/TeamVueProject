@@ -69,7 +69,7 @@
       suercheck:function () {
         axios.get("api/checkname?name="+this.user.name).then(res=>{
             if(res.data=="用户名重复"){
-                this.tips="有用户名正确,请输如验证码"
+                this.tips="用户名正确,请输如验证码"
                 axios.get("api/getcodepwd").then(res=>{
                     this.code1=res.data
                 })
@@ -95,7 +95,7 @@
             user:{
                 name:'',
                 code:'',
-              pass:''
+                  pass:''
             },
             code1:'',
           tips:'',
