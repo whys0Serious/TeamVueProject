@@ -23,13 +23,17 @@
       </el-row>
     </div>
 
+
+
+
+
     <router-view />
   </div>
 </template>
 <style>
   /*总的div*/
   #big{
-    /*background-color: darkseagreen;*/
+    /*background-color: #fefff9;*/
     width:1510px;
     height: 900px;
   }
@@ -43,13 +47,6 @@
   /*左边菜单宽度*/
   .el-col-20{
     width: 100%;
-  }
-  /*右边展示栏*/
-  #right{
-    background-color: honeydew;
-    width:1420px;
-    height: 600px;
-    float: left;
   }
 </style>
 

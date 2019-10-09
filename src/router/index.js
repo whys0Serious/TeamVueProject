@@ -19,11 +19,9 @@ import userselect from '@/components/后台/userselect'
 import CoursePage from '@/components/CoursePage'
 import HighCourse from '@/components/HighCourse'
 import MiddleCourse from '@/components/MiddleCourse'
-import ApplyText from '@/components/后台/ApplyText'
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-
 
 Vue.use(ElementUI);
 Vue.use(Router)
@@ -50,10 +48,6 @@ export default new Router({
         {path:'update',component:update1}
       ]
 
-    },
-    {
-      path:'/blank',
-      component:blank
     },
     {
       path: '/login',
@@ -87,7 +81,9 @@ export default new Router({
       component:Mannerge,
       children:[
         {path:'selectcou',name:'selectcou',component:selectcou},
-        {path:'userselect',name:'userselect',component:userselect}
+        {path:'addCourse',name:'addCourse',component:addCourse},
+        {path:'updateCourse/:id',name:'updateCourse',component:updateCourse},
+        {path:'userselect',name:'userselect',component:userselect},
       ]
     },
     {
@@ -112,6 +108,10 @@ export default new Router({
       path:'/ApplyText',
       component:ApplyText,
       name:'ApplyText'
+    }
+    {
+      path:'/adminshow',
+      component:adminshow
     }
   ]
 })
