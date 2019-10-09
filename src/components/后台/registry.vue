@@ -216,8 +216,7 @@
             this.user.sex=this.ruleForm.sex
             this.user.pass=this.ruleForm.pass
             console.log(this.user)
-
-            axios.post("api/registry",this.user) .then(res=>{
+            axios.post("api/registry1",this.user) .then(res=>{
               this.$message(res.data)
               if(res.data=='注册成功')
                 this.$router.push("/login")
@@ -238,7 +237,7 @@
               if (res.data == "邮箱验证码获取失败"||res.data == "获取验证码出现异常")
                 this.mes=res.data
               else{
-                this.mes="验证码已经发送(5秒后失效)"
+                this.mes="验证码已经发送(60秒后失效)"
               }
             })
           }

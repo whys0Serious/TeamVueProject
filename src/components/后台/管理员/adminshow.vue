@@ -1,0 +1,33 @@
+<template>
+  <div><!--
+   <el-table
+    :data="user"
+    border
+    style="width: 80%;">
+    <el-table-column
+      label="图片"
+      prop="imageUrl"
+      fixed
+      width="120">-->
+    <el-table
+      :data="user"
+     >
+      <el-table-column
+        lable="他打"
+        prop="id"
+      >
+      </el-table-column>
+    </el-table>
+  </div>
+</template>
+<script>
+  export default{
+      data(){
+          return{
+              user:[
+                {id:'dasd',}
+              ],
+          }
+      }
+  }
+</script>
