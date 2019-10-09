@@ -11,11 +11,12 @@ import Mannerge from '@/components/后台/Mannerge'
 import ind from '@/components/index'
 import CourseInfo from '@/components/CourseInfo'
 import userselect from '@/components/后台/userselect'
+import useradd from '@/components/后台/useradd'
+
 
 import CoursePage from '@/components/CoursePage'
 import HighCourse from '@/components/HighCourse'
 import MiddleCourse from '@/components/MiddleCourse'
-
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
@@ -77,9 +78,15 @@ export default new Router({
       ]
     },
     {
+      path:'/useradd/{id}',
+      name:'useradd',
+      component:useradd
+    },
+    {
       path:'/CourseInfo',
       name:'CourseInfo',
       component:CourseInfo
     },
+
   ]
 })
