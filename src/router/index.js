@@ -10,11 +10,11 @@ import selectcou from '@/components/后台/selectcou'
 import Mannerge from '@/components/后台/Mannerge'
 import cash from '@/components/后台/cash'
 import cart from '@/components/后台/cart'
-import blank from '@/components/后台/blank'
 import foegetpwd from '@/components/后台/foegetpwd'
 import ind from '@/components/index'
 import CourseInfo from '@/components/CourseInfo'
 import userselect from '@/components/后台/userselect'
+import adminshow from '@/components/后台/管理员/adminshow'
 import addCourse from '@/components/后台/addCourse'
 import updateCourse from '@/components/后台/updateCourse'
 
@@ -50,10 +50,6 @@ export default new Router({
         {path:'update',component:update1}
       ]
 
-    },
-    {
-      path:'/blank',
-      component:blank
     },
     {
       path: '/login',
@@ -110,5 +106,9 @@ export default new Router({
       path:'/foegetpwd',
       component:foegetpwd
     },
+    {
+      path:'/adminshow',
+      component:adminshow
+    }
   ]
 })
