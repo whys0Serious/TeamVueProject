@@ -1,7 +1,12 @@
 <template>
   <div class="contain">
-    <el-page-header @back="goBack" content="忘记密码">
-    </el-page-header>
+    <div style="margin-left: 5px;
+    margin-top: 28px;
+    margin-bottom: 42px;">
+      <el-page-header @back="goBack" content="取消订单" style="color: green">
+      </el-page-header>
+    </div>
+
     <div>
       <el-steps :space="200" :active="1" finish-status="success">
         <el-step title="购买完成"></el-step>
@@ -19,9 +24,8 @@
       :data="tableData"
       style="width: 100%">
       <el-table-column
-        prop="name"
-        label="课程讲师"
-        width="100">
+        prop="course"
+        label="课程名称">
       </el-table-column>
       <el-table-column
         prop="time"
@@ -37,22 +41,22 @@
         label="数量">
       </el-table-column>
       <el-table-column
-        prop="tips"
-        label="优惠方式">
+        prop="name"
+        label="课程讲师"
+        width="100">
       </el-table-column>
+
       <el-table-column
         prop="all"
         label="小计">
       </el-table-column>
     </el-table>
-
     </div>
     <div class="cash">
       付款金额：
       <div><h3>RMB</h3><span style="color: #3b111d;font-size: 30px;margin-left: 20px">{{this.$route.params.price}}.00元</span></div>
     </div>
-    <el-button style="float: right;position: relative;left: 160px;top: 160px;text-align: left;background-color: #ffdd70">
-      <a href="api/alipay">确认提交订单</a></el-button>
+    <button id="button" @click="pay()">提交订单</button>
   </div>
 </template>
 <style>
@@ -71,8 +75,21 @@
   span{
     margin-left: 50px;
   }
+  #button{
+    left: 160px;
+    top: 160px;
+    float: right;
+    position: relative;
+    border: 0px;
+    width: 163px;
+    background-color:limegreen;
+    color: white;
+    height: 40px;
+    font-size: large;
+  }
 </style>
 <script>
+  import axios from 'axios'
   export default{
       data(){
           return{
@@ -81,7 +98,7 @@
               time:this.$route.params.coutime,
               price:this.$route.params.price,
               all:this.$route.params.price,
-              tips:'10元优惠券',
+              course:this.$route.params.cname,
               num:1,
             }]
           }
@@ -91,8 +108,22 @@
         this.$router.push("/")
         console.log('go back');
       },
-    },
-    mounted(){
+      pay(){
+
+         axios.post("/api/alipay",{price:this.$route.params.price,cname:this.$route.params.cname}).then(res=> {
+
+            if(res.status==200){
+              let routerData = this.$router.resolve({path:'/ApplyText',query:{htmls:res.data}})
+         this.htmls = res.data
+              window.open(routerData.href,'_blank')
+         const div = document.createElement('div');
+              div.innerHTML = htmls;
+              document.body.appendChild(div);
+              document.forms [0] .submit();
+            }
+
+         })
+      }
     }
   }
 </script>

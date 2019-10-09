@@ -14,13 +14,11 @@ import foegetpwd from '@/components/后台/foegetpwd'
 import ind from '@/components/index'
 import CourseInfo from '@/components/CourseInfo'
 import userselect from '@/components/后台/userselect'
-import adminshow from '@/components/后台/管理员/adminshow'
-import addCourse from '@/components/后台/addCourse'
-import updateCourse from '@/components/后台/updateCourse'
 
 import CoursePage from '@/components/CoursePage'
 import HighCourse from '@/components/HighCourse'
 import MiddleCourse from '@/components/MiddleCourse'
+import ApplyText from '@/components/后台/ApplyText'
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -83,8 +81,6 @@ export default new Router({
       component:Mannerge,
       children:[
         {path:'selectcou',name:'selectcou',component:selectcou},
-        {path:'addCourse',name:'addCourse',component:addCourse},
-        {path:'updateCourse/:id',name:'updateCourse',component:updateCourse},
         {path:'userselect',name:'userselect',component:userselect},
       ]
     },
@@ -107,8 +103,9 @@ export default new Router({
       component:foegetpwd
     },
     {
-      path:'/adminshow',
-      component:adminshow
-    }
+      path:'/ApplyText',
+      component:ApplyText,
+      name:'ApplyText'
+    },
   ]
 })
