@@ -1,7 +1,10 @@
 <script>
   export default{
+      data(){
+
+      },
       mounted(){
-          this.$router.push("/")
+        this.$router.push("/")
       }
   }
 </script>

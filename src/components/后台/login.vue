@@ -108,7 +108,8 @@
           }
           this.$message(res.data)
           if(res.data=="登陆成功"){
-            this.$router.push("/blank")
+              this.$router.push("/")
+            this.$router.go(0);
           }
         })
         this.$refs[formName].validate((valid) => {
