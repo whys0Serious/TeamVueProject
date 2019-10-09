@@ -17,12 +17,12 @@
           <!--<div id="src"> <img src="https://shared-https.ydstatic.com/ke/web/v1.1.3/32aac580.png"/></div>-->
         </div>
         <!--登陆-->
-        <div class="login"><p><a href="http://localhost:8080/#/login">登陆</a></p></div>
+        <div v-if="flag2" class="login"><p><a href="http://localhost:8080/#/login">登陆</a></p></div>
 
 
-          <el-dropdown  style="margin-bottom: 30px;">
-            <span class="el-dropdown-link login">
-              <p><a href="http://localhost:8080/#/login">用户:<font color="red">{{msg}}</font></a></p><i class="el-icon-arrow-down el-icon--right"></i>
+          <el-dropdown  class="login" style="margin-bottom: 30px;">
+            <span v-if="flag==true" class="el-dropdown-link login" >
+              <p ><a style="margin-right: 20px" href="http://localhost:8080/#/login">用户:<font color="red">{{msg}}</font></a></p><i class="el-icon-arrow-down el-icon--right"></i>
             </span>
            <div v-if="flag"> <el-dropdown-menu slot="dropdown">
               <el-dropdown-item><a href="#" @click="logout" class="login">注销</a></el-dropdown-item>
@@ -46,7 +46,8 @@
   data(){
       return{
           flag:false,
-          msg:''
+          msg:'',
+          flag2:true,
       }
   },
    methods:{
@@ -62,8 +63,10 @@
       axios.get("api/getuseradnima").then(res=>{
           this.msg=res.data
           this.flag=true
+          this.flag2=false
         if(res.data==""||res.data==null){
           this.flag=false
+          this.flag2=true
         }
       },res=>{
         this.flag=false
