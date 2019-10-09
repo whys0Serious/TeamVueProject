@@ -19,7 +19,10 @@
         <!--登陆-->
         <div class="login"><p><a href="http://localhost:8080/#/login">登陆</a></p></div>
 
-
+        <el-image
+          style="width: 100px; height: 120px"
+          :src="image"
+        ></el-image>
           <el-dropdown  style="margin-bottom: 30px;">
             <span class="el-dropdown-link login">
               <p><a href="http://localhost:8080/#/login">用户:<font color="red">{{msg}}</font></a></p><i class="el-icon-arrow-down el-icon--right"></i>
@@ -46,7 +49,8 @@
   data(){
       return{
           flag:false,
-          msg:''
+          msg:'',
+          image:''
       }
   },
    methods:{
@@ -60,7 +64,8 @@
    },
   mounted(){
       axios.get("api/getuseradnima").then(res=>{
-          this.msg=res.data
+          this.msg=res.data.uname
+        this.image=res.data.imageUrl
           this.flag=true
         if(res.data==""||res.data==null){
           this.flag=false
