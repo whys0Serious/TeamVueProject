@@ -15,7 +15,7 @@
       <span style="margin-left: 70px;color: white;font-size: large;font-weight: bold"><router-link
         :to="{name:'cart',params:{thname:teacher.thname,coutime:course.coutime,price:course.price,tips:teacher.themail,
         cname:course.cname
-      }}">立即报名</router-link></span>
+      }}" ><a @click="logininterrept">立即报名</a></router-link></span>
       <span style="color:yellow;font-weight: bolder;margin-left:70px;font-size: large">￥{{course.price}}</span></el-button></div>
   </div>
 </div>
@@ -32,6 +32,15 @@
               thdetail:'',thpic:''}
           }
       },
+    methods:{
+      logininterrept:function () {
+          axios.get("api/logininterrept").then(res=>{
+
+          },res=>{
+              this.$router.push("/login")
+          })
+      }
+    },
     mounted(){
       //根据课程编号查询课程详情
     axios.post("/api/findCourseInfo",{cid:this.$route.params.cid}).then(res=>{

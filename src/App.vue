@@ -16,24 +16,27 @@
           <el-button icon="el-icon-search" size="smile" circle></el-button>
           <!--<div id="src"> <img src="https://shared-https.ydstatic.com/ke/web/v1.1.3/32aac580.png"/></div>-->
         </div>
-        <!--登陆-->
-        <div class="login"><p><a href="http://localhost:8080/#/login">登陆</a></p></div>
+        <div>
 
-        <el-image
-          style="width: 100px; height: 120px"
-          :src="image"
-        ></el-image>
-          <el-dropdown  style="margin-bottom: 30px;">
-            <span class="el-dropdown-link login">
-              <p><a href="http://localhost:8080/#/login">用户:<font color="red">{{msg}}</font></a></p><i class="el-icon-arrow-down el-icon--right"></i>
+        </div>
+        <!--登陆-->
+        <div v-if="flag==false">
+        <div class="login"><p><a href="http://localhost:8080/#/login">登陆</a></p></div>
+        </div>
+
+
+        <div v-if="flag">
+          <el-dropdown>
+            <span class="el-dropdown-link">
+               <h3><a href="http://localhost:8080/#/login"></a>{{msg}}<i class="el-icon-arrow-down el-icon--right"></i></h3>
             </span>
-           <div v-if="flag"> <el-dropdown-menu slot="dropdown">
+            <el-dropdown-menu slot="dropdown">
               <el-dropdown-item><a href="#" @click="logout" class="login">注销</a></el-dropdown-item>
               <el-dropdown-item><a href="http://localhost:8088/logout" class="login">详细信息</a></el-dropdown-item>
             </el-dropdown-menu>
-           </div>
-        </el-dropdown>
-
+          </el-dropdown>
+          <el-image style="width: 50px; height: 50px;border-radius:25px;margin-left: 30px" :src="image" ></el-image>
+        </div>
       </div>
     </div>
     <router-view/>
@@ -44,67 +47,67 @@
 </style>
 <script>
   import axios from 'axios'
- export default {
-  name: 'App',
-  data(){
+  export default {
+    name: 'App',
+    data(){
       return{
-          flag:false,
-          msg:'',
-          image:''
+        flag:false,
+        msg:'',
+        image:''
       }
-  },
-   methods:{
-     logout:function () {
-       axios.get("api/logout").then(res=>{
-           if(res.data=="注销成功")
-               this.$router.go(0);
-                this.flag=false
-       })
-     }
-   },
-  mounted(){
+    },
+    methods:{
+      logout:function () {
+        axios.get("api/logout").then(res=>{
+          if(res.data=="注销成功")
+            this.$router.go(0);
+          this.flag=false
+        })
+      }
+    },
+    mounted(){
       axios.get("api/getuseradnima").then(res=>{
-          this.msg=res.data.uname
+        this.msg=res.data.uname
         this.image=res.data.imageUrl
-          this.flag=true
+        this.flag=true
         if(res.data==""||res.data==null){
           this.flag=false
         }
       },res=>{
         this.flag=false
       })
+    }
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-.el-dropdown-link {
-  cursor: pointer;
-  color: rgba(168, 35, 72, 0.99);
-}
-.el-icon-arrow-down {
-  font-size: 12px;
-}
-.hadder{
-  width: 1510px;
-  height: 60px;
-  background-image: linear-gradient(-90deg,#00d87d,#00db9d);
-}
-#hadder{
-  width: 1180px;
-  height: 60px;
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
+  .el-dropdown-link {
+    cursor: pointer;
+    color: rgba(67, 119, 168, 0.99);
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
+  }
+  .hadder{
+    width: 1510px;
+    height: 60px;
+    background-image: linear-gradient(-90deg,#00d87d,#00db9d);
+  }
+  #hadder{
+    width: 1180px;
+    height: 60px;
 
-  margin: auto;
-  /*background-color: darkblue;*/
-}
-#logo{
+    margin: auto;
+    /*background-color: darkblue;*/
+  }
+  #logo{
     width: 145px;
     height: 60px;
     /*background-color: aquamarine;*/

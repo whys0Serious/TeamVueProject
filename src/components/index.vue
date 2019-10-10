@@ -27,6 +27,8 @@
         <a href="#">
           <div v-for="cs in course">
             <router-link :to="{name:'CourseInfo',params:{cid:cs.cid,thid:cs.thid,pic_num:cs.picnum}}">
+          <div v-for="(cs,index) in course">
+        <div v-if="index<4">
           <div class="cardd">
             <div v-if="cs.ctid==1">
               <span class="_8-iAp" >小学</span>
@@ -40,8 +42,8 @@
             <h1 class="classname">{{cs.cname}}</h1>
             <div class="classtime">时间:{{cs.time}}<ins>|</ins>{{cs.cou_time}} 课时</div>
             <div class="tcher">
-              <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-              <span>包易正</span>
+              <img class="tcherimg" v-bind:src="cs.thpic"/>
+              <span>{{cs.thname}}</span>
             </div>
             <div class="foot">
               <div class="buy">
@@ -57,10 +59,9 @@
               </div>
             </div>
           </div>
-            </router-link>
+        </div>
           </div>
-
-        </a>
+            </router-link>
       </div>
     </div>
 
@@ -92,8 +93,8 @@
               <h1 class="classname">{{h.cname}}</h1>
               <div class="classtime">时间:{{h.time}}<ins>|</ins>{{h.cou_time}}课时</div>
               <div class="tcher">
-                <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                <span>包易正</span>
+                <img class="tcherimg" v-bind:src="h.thpic"/>
+                <span>{{h.thname}}</span>
               </div>
               <div class="foot">
                 <div class="buy">
@@ -124,8 +125,8 @@
                 <h1 class="classname">{{h.cname}}</h1>
                 <div class="classtime">时间:{{h.time}}<ins>|</ins>{{h.cou_time}}课时</div>
                 <div class="tcher">
-                  <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                  <span>包易正</span>
+                  <img class="tcherimg" v-bind:src="h.thpic"/>
+                  <span>{{h.thname}}</span>
                 </div>
                 <div class="foot">
                   <div class="buy">
@@ -176,8 +177,8 @@
                     <h1 class="classname">{{jun.cname}}</h1>
                     <div class="classtime">时间:{{jun.time}}<ins>|</ins>{{jun.cou_time}}课时</div>
                     <div class="tcher">
-                      <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                      <span>包易正</span>
+                      <img class="tcherimg" v-bind:src="jun.thpic"/>
+                      <span>{{jun.thname}}</span>
                     </div>
                     <div class="foot">
                       <div class="buy">
@@ -208,8 +209,8 @@
                     <h1 class="classname">{{jun.cname}}</h1>
                     <div class="classtime">时间:{{jun.time}}<ins>|</ins>{{jun.cou_time}}课时</div>
                     <div class="tcher">
-                      <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                      <span>包易正</span>
+                      <img class="tcherimg" v-bind:src="jun.thpic"/>
+                      <span>{{jun.thname}}</span>
                     </div>
                     <div class="foot">
                       <div class="buy">
@@ -259,8 +260,8 @@
                     <h1 class="classname">{{hig.cname}}</h1>
                     <div class="classtime">时间:{{hig.time}}<ins>|</ins>{{hig.cou_time}}课时</div>
                     <div class="tcher">
-                      <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                      <span>包易正</span>
+                      <img class="tcherimg" v-bind:src="hig.thpic"/>
+                      <span>{{hig.thname}}</span>
                     </div>
                     <div class="foot">
                       <div class="buy">
@@ -291,8 +292,8 @@
                     <h1 class="classname">{{hig.cname}}</h1>
                     <div class="classtime">时间:{{hig.time}}<ins>|</ins>{{hig.cou_time}}课时</div>
                     <div class="tcher">
-                      <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                      <span>包易正</span>
+                      <img class="tcherimg" v-bind:src="hig.thpic"/>
+                      <span>{{hig.thname}}</span>
                     </div>
                     <div class="foot">
                       <div class="buy">
@@ -320,7 +321,8 @@
     <div class="clasfoot">
       <img style="width: 100%;height: 300px;" src="http://pylgiouvi.bkt.clouddn.com/htmlfoot.jpg"/>
     </div>
-  </div>
+    </div>
+
 
 </template>
 

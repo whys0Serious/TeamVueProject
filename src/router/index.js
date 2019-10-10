@@ -5,20 +5,26 @@ import login from '@/components/后台/login'
 import registry from '@/components/后台/registry'
 import index from '@/components/后台/index'
 import usershow from '@/components/后台/usershow'
-import update1 from '@/components/后台/update'
+import updateuser from '@/components/后台/updateuser'
 import selectcou from '@/components/后台/selectcou'
 import Mannerge from '@/components/后台/Mannerge'
 import cash from '@/components/后台/cash'
 import cart from '@/components/后台/cart'
+
 import foegetpwd from '@/components/后台/foegetpwd'
 import ind from '@/components/index'
 import CourseInfo from '@/components/CourseInfo'
 import userselect from '@/components/后台/userselect'
+import addCourse from '@/components/后台/addCourse'
+import ApplyText from '@/components/后台/ApplyText'
+import updateCourse from '@/components/后台/updateCourse'
+import adminadd from '@/components/后台/管理员/adminadd'
+import adminshow from '@/components/后台/管理员/adminshow'
+import adminupdate from '@/components/后台/管理员/adminupdate'
 
 import CoursePage from '@/components/CoursePage'
 import HighCourse from '@/components/HighCourse'
 import MiddleCourse from '@/components/MiddleCourse'
-import ApplyText from '@/components/后台/ApplyText'
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -32,21 +38,18 @@ export default new Router({
       name: 'ind',
       component: ind
     },
+    {
+      path: '/updateuser',
+      name: 'updateuser',
+      component: updateuser
+    },
     {path:'/usershow',
       component:usershow
-    },
-    {
-      path:'/update',
-      component:update1
     },
     {
       path: '/index',
       name: 'index',
       component: index,
-      children:[
-        {path:'usershow',component:usershow},
-        {path:'update',component:update1}
-      ]
 
     },
     {
@@ -81,6 +84,8 @@ export default new Router({
       component:Mannerge,
       children:[
         {path:'selectcou',name:'selectcou',component:selectcou},
+        {path:'addCourse',name:'addCourse',component:addCourse},
+        {path:'updateCourse/:id',name:'updateCourse',component:updateCourse},
         {path:'userselect',name:'userselect',component:userselect},
       ]
     },
@@ -107,5 +112,17 @@ export default new Router({
       component:ApplyText,
       name:'ApplyText'
     },
+    {
+      path:'/adminshow',
+      component:adminshow
+    },
+    {
+      path:'/adminadd',
+      component:adminadd
+    },
+    {
+      path:'/adminupdate',
+      component:adminupdate
+    }
   ]
 })
