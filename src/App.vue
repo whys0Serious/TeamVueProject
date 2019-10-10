@@ -29,13 +29,7 @@
           <el-dropdown>
             <span class="el-dropdown-link" >
               {{msg}}
-              <el-popover trigger="click" placement="right">
-                <span>单机展开</span>
-                <div slot="reference">
                    <i class="el-icon-arrow-down" ></i>
-                </div>
-              </el-popover>
-
             </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item><a href="#" @click="logout" class="login">注销</a></el-dropdown-item>
