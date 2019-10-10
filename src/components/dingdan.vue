@@ -3,8 +3,10 @@
     <div id="dingdanbody">
       <div id="left">
         <div id="user">
-          <div id="user_img" ><img style="width:120px;height: 120px;border-radius:60px;" src="http://pylgiouvi.bkt.clouddn.com/image%20%286%29.png"/></div>
-          <div id="user_name"><p style="font-size: 18px;color: black;">张三</p></div>
+          <div id="user_img" >
+            <el-image style="width:120px;height: 120px;border-radius:60px;" :src="user.imageUrl"></el-image>
+          </div>
+          <div id="user_name"><p style="font-size: 18px;color: black;">{{user.uname}}</p></div>
         </div>
         <div class="nav">
            <div class="nav_1">
@@ -23,16 +25,16 @@
 
       <!---->
       <div id="right" >
-        <el-table :data="tableData" style="width: 100%" :row-class-name="tableRowClassName">
-          <el-table-column prop="date" label="购买的课程" width="180" align="center">
+        <el-table :data="order" style="width: 100%" :row-class-name="tableRowClassName">
+          <el-table-column prop="tradcname" label="购买的课程" width="180" align="center">
           </el-table-column>
-          <el-table-column prop="price" label="金额" width="180" align="center">
+          <el-table-column prop="tradacount" label="金额" width="180" align="center">
           </el-table-column>
-          <el-table-column prop="dingdanid" label="订单号" width="180" align="center">
+          <el-table-column prop="tradnum" label="订单号" width="180" align="center">
           </el-table-column>
-          <el-table-column prop="xiadan" label="下单时间" width="180" align="center">
+          <el-table-column prop="tradtime" label="下单时间" width="180" align="center">
           </el-table-column>
-          <el-table-column prop="address" label="状态" width="180" align="center">
+          <el-table-column prop="tradstatus" label="状态" width="180" align="center">
           </el-table-column>
 
         </el-table>
@@ -42,6 +44,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   export default {
     methods: {
       tableRowClassName({row, rowIndex}) {
@@ -55,33 +58,23 @@
     },
     data() {
       return {
-        tableData: [{
-          date: '高考自然地理难点精析高考自然地理难点精析',
-          price: '20',
-          address: '支付成功',
-          dingdanid:'12135451321545',
-          xiadan:'2019-12-32'
-        }, {
-          date: '高考自然地理难点精析高考自然地理难点精析',
-          price: '20',
-          address: '支付成功',
-          dingdanid:'12135451321545',
-          xiadan:'2019-12-32'
-        }, {
-          date: '高考自然地理难点精析高考自然地理难点精析',
-          price: '20',
-          address: '支付成功',
-          dingdanid:'12135451321545',
-          xiadan:'2019-12-32'
-        }, {
-          date: '高考自然地理难点精析高考自然地理难点精析',
-          price: '20',
-          address: '支付成功',
-          dingdanid:'12135451321545',
-          xiadan:'2019-12-32'
-        }]
+        order: [],
+        user:''
       }
-    }
+    },
+    mounted(){
+      axios.post("/api/findOrderByUid",{uid:this.$route.params.uid}).then(res=>{
+            this.order=res.data;
+      })
+
+      axios.post("/api/alipay_callback",{app_id:this.$route.query.app_id,
+        total_amount:this.$route.query.total_amount,out_trade_no:this.$route.query.out_trade_no}).then(res=>{
+        this.order=res.data;
+      })
+      axios.get("api/getuseradnima").then(res=>{
+          this.user=res.data;
+      })
+   }
   }
 
 </script>

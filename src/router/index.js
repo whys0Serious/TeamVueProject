@@ -8,7 +8,6 @@ import usershow from '@/components/后台/usershow'
 import updateuser from '@/components/后台/updateuser'
 import selectcou from '@/components/后台/selectcou'
 import Mannerge from '@/components/后台/Mannerge'
-import cash from '@/components/后台/cash'
 import cart from '@/components/后台/cart'
 import teachershow from '@/components/后台/教师管理/teachershow'
 
@@ -106,11 +105,6 @@ export default new Router({
       path:'/CourseInfo',
       name:'CourseInfo',
       component:CourseInfo
-    },
-    {
-      path:"/cash",
-      name:'cash',
-      component:cash
     },
     {
       path:'/foegetpwd',
