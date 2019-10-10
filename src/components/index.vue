@@ -24,8 +24,9 @@
 
       <div class="hot_top"><h3>热门课程</h3></div>
       <div id="hot_foot">
-        <a href="phone?action=one&bid=<%=phone.getBid() %>">
+        <a href="#">
           <div v-for="cs in course">
+            <router-link :to="{name:'CourseInfo',params:{cid:cs.cid,thid:cs.thid,pic_num:cs.picnum}}">
           <div class="cardd">
             <div v-if="cs.ctid==1">
               <span class="_8-iAp" >小学</span>
@@ -56,7 +57,9 @@
               </div>
             </div>
           </div>
+            </router-link>
           </div>
+
         </a>
       </div>
     </div>
@@ -71,8 +74,9 @@
           <div class="xueimg">
             <img style="width: 575px;height: 272px;" src="http://pylgiouvi.bkt.clouddn.com/%E5%B0%8F%E5%AD%A6.png"/>
           </div>
-          <a href="phone?action=one&bid=<%=phone.getBid() %>">
+          <a href="#">
           <div v-for="(h,index) in primary">
+            <router-link :to="{name:'CourseInfo',params:{cid:h.cid,thid:h.thid,pic_num:h.picnum}}">
             <div v-if="index<6">
             <div v-if="index<2">
             <div class="showcardd">
@@ -139,6 +143,7 @@
               </div>
             </div>
           </div>
+            </router-link>
           </div>
           </a>
         </div>
@@ -153,8 +158,9 @@
           <div class="xueimg">
             <img style="width: 575px;height: 272px;" src="http://pylgiouvi.bkt.clouddn.com/%E5%88%9D%E4%B8%AD.png"/>
           </div>
-          <a href="phone?action=one&bid=<%=phone.getBid() %>">
+          <a href="#">
             <div v-for="(jun,index) in junior">
+              <router-link :to="{name:'CourseInfo',params:{cid:jun.cid,thid:jun.thid,pic_num:jun.picnum}}">
               <div v-if="index<6">
                 <div v-if="index<2">
                   <div class="showcardd">
@@ -221,6 +227,7 @@
                   </div>
                 </div>
               </div>
+              </router-link>
             </div>
           </a>
         </div>
@@ -234,8 +241,9 @@
           <div class="xueimg">
             <img style="width: 575px;height: 272px;" src="http://pylgiouvi.bkt.clouddn.com/%E9%AB%98%E4%B8%AD.png"/>
           </div>
-          <a href="phone?action=one&bid=<%=phone.getBid() %>">
+          <a href="#">
             <div v-for="(hig,index) in hightc">
+              <router-link :to="{name:'CourseInfo',params:{cid:hig.cid,thid:hig.thid,pic_num:hig.picnum}}">
               <div v-if="index<6">
                 <div v-if="index<2">
                   <div class="showcardd">
@@ -302,15 +310,12 @@
                   </div>
                 </div>
               </div>
+              </router-link>
             </div>
           </a>
         </div>
       </div>
     </div>
-
-
-
-
     <!--底部-->
     <div class="clasfoot">
       <img style="width: 100%;height: 300px;" src="http://pylgiouvi.bkt.clouddn.com/htmlfoot.jpg"/>

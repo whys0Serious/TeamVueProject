@@ -9,7 +9,21 @@
     </div>
     <div >
       <div> <el-divider><i class="el-icon-mobile-phone"></i></el-divider></div>
-      <h4 >支付信息</h4>
+      <h4 >支付成功</h4>
     </div>
   </div>
 </template>
+
+<script>
+  import axios from 'axios'
+  export default{
+      data(){
+          return{
+            message:''
+          }
+      },
+    mounted(){
+
+    }
+  }
+</script>

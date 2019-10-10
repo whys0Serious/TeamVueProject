@@ -113,6 +113,7 @@
          axios.post("/api/alipay",{price:this.$route.params.price,cname:this.$route.params.cname}).then(res=> {
 
             if(res.status==200){
+                //重定向
               let routerData = this.$router.resolve({path:'/ApplyText',query:{htmls:res.data}})
          this.htmls = res.data
               window.open(routerData.href,'_blank')

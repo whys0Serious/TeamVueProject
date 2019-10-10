@@ -2,7 +2,7 @@
   <div>
     <div id="title1">
       <el-row :gutter="20">
-        <el-col :span="6"><div class="grid-content bg-purple"><h2>小学</h2></div></el-col>
+        <el-col :span="6"><div class="grid-content bg-purple"><h2>初中</h2></div></el-col>
         <el-col :span="6"><div class="grid-content bg-purple"><el-link type="info" :underline="false" @click="searchAll">精选</el-link></div></el-col>
         <el-col :span="6"><div class="grid-content bg-purple"><el-link type="info" :underline="false" @click="searchChinese">语文</el-link></div></el-col>
         <el-col :span="6"><div class="grid-content bg-purple"><el-link type="info" :underline="false" @click="searchMath">数学</el-link></div></el-col>
@@ -38,8 +38,8 @@
             <h1 class="classname">{{c.cname}}</h1>
             <div class="classtime">时间：{{c.time}} <ins>|</ins> {{c.coutime}}课时</div>
             <div class="tcher">
-              <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-              <span>包易正</span>
+              <el-image class="tcherimg" :src="c.thpic"></el-image>
+              <span>{{c.thname}}</span>
             </div>
             <div class="foot">
               <div class="buy">
@@ -59,7 +59,7 @@
         <h2 style="float: left">语文</h2>
       </div>
       <div  v-for="(m,index) in chinese">
-        <a href="#"><router-link :to="{name:'CourseInfo',params:{cid:c.cid,thid:c.thid,pic_num:c.picnum}}">
+        <a href="#"><router-link :to="{name:'CourseInfo',params:{cid:m.cid,thid:m.thid,pic_num:m.picnum}}">
           <div class="showcarddfoot">
             <div v-if="m.ctid==1">
               <span class="_8-iAp" >小学</span>
@@ -73,8 +73,8 @@
             <h1 class="classname">{{m.cname}}</h1>
             <div class="classtime">时间：{{m.time}} <ins>|</ins> {{m.coutime}}课时</div>
             <div class="tcher">
-              <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-              <span>包易正</span>
+              <el-image class="tcherimg" :src="m.thpic"></el-image>
+              <span>{{m.thname}}</span>
             </div>
             <div class="foot">
               <div class="buy">
@@ -110,8 +110,8 @@
             <h1 class="classname">{{c.cname}}</h1>
             <div class="classtime">时间：{{c.time}} <ins>|</ins> {{c.coutime}}课时</div>
             <div class="tcher">
-              <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-              <span>包易正</span>
+              <el-image class="tcherimg" :src="c.thpic"></el-image>
+              <span>{{c.thname}}</span>
             </div>
             <div class="foot">
               <div class="buy">
@@ -133,7 +133,7 @@
         <h2 style="float: left">英语</h2>
       </div>
       <div v-for="(e,index) in English">
-        <a href="#" ><router-link :to="{name:'CourseInfo',params:{cid:c.cid,thid:c.thid,pic_num:c.picnum}}">
+        <a href="#" ><router-link :to="{name:'CourseInfo',params:{cid:e.cid,thid:e.thid,pic_num:e.picnum}}">
           <div class="showcarddfoot">
             <div v-if="e.ctid==1">
               <span class="_8-iAp" >小学</span>
@@ -147,8 +147,8 @@
             <h1 class="classname">{{e.cname}}</h1>
             <div class="classtime">时间：{{e.time}} <ins>|</ins>{{e.coutime}} 课时</div>
             <div class="tcher">
-              <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-              <span>包易正</span>
+              <el-image class="tcherimg" :src="e.thpic"></el-image>
+              <span>{{e.thname}}</span>
             </div>
             <div class="foot">
               <div class="buy">
@@ -183,8 +183,8 @@
             <h1 class="classname">{{c.cname}}</h1>
             <div class="classtime">时间：{{c.time}} <ins>|</ins>{{c.coutime}}课时</div>
             <div class="tcher">
-              <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-              <span>包易正</span>
+              <el-image class="tcherimg" :src="c.thpic"></el-image>
+              <span>{{c.thname}}</span>
             </div>
             <div class="foot">
               <div class="buy">
@@ -233,15 +233,15 @@
         console.log(res.data)
         this.course1=res.data;
       })
-      axios.get("api/findShow/chinese/2").then(res=>{
+      axios.post("api/findCourseByName",{cname:"语文",ctid:2}).then(res=>{
         console.log(res.data)
         this.chinese=res.data;
       })
-      axios.get("api/findShow/math/2").then(res=>{
+      axios.post("api/findCourseByName",{cname:"数学",ctid:2}).then(res=>{
         console.log(res.data)
         this.math=res.data;
       })
-      axios.get("api/findShow/English/2").then(res=>{
+      axios.post("api/findCourseByName",{cname:"英语",ctid:2}).then(res=>{
         console.log(res.data)
         this.English=res.data;
       })
@@ -297,11 +297,11 @@
   }
   #title1{
     height: 100px;
-    margin-top: 32px;
+    margin-top: 17px;
   }
   .title2{
-    margin-left:80px;
-    height: 90px;
+    margin-left:64px;
+    height: 75px;
   }
   .el-col-6 {
     width: 200px;
@@ -558,7 +558,7 @@
     transition:all 500ms/*动画过渡*/
   }
   .showcarddfoot{
-    margin-left: 65px;
+    margin-left: 60px;
     float: left;
     margin-right: 30px;
     margin-top: 20px;

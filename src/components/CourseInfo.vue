@@ -49,7 +49,7 @@
   #mainpic{
     width: 1510px;
     height: 500px;
-    background-color: #224E7C;
+    background-color: white;
     box-shadow: 0px 10px 10px -15px #5E5E5E;
   }
 
@@ -63,6 +63,7 @@
     width: 430px;
     height: 500px;
     float: left;
+    background-color: steelblue;
   }
   .el-image {
     float: left;
@@ -74,7 +75,7 @@
   #coursetitle{
     width: 430px;
     height: 130px;
-    background-color: #224E7C;
+    background-color: steelblue;
     color: white;
     text-align: center;
     font-size: larger;
