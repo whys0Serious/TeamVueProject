@@ -21,21 +21,29 @@
      </el-table-column>
      <el-table-column label="操作" width="200px" fixed="right">
        <template slot-scope="scope">
-         <el-popover trigger="hover" placement="bottom" style="height: 20px">
+         <el-popover trigger="hover" placement="left" style="height: 20px">
            <span style="color: orange">点击修改图片</span>
            <div slot="reference" style="color: orange">
-             <i class="el-icon-edit" @click="upth(scope.row.thid)" ></i>
+             <div class="icon">
+              <i class="el-icon-edit" @click="upth(scope.row.thid)" ></i>
+             </div>
            </div>
          </el-popover>
           <el-popover trigger="hover" placement="left">
             <span>单击删除</span>
             <div slot="reference" style="color: red">
-              <i class="el-icon-delete"  @click="dele(scope.row.thid)" style="margin-left: 30px;margin-right: 30px" ></i>
+              <div class="icon">
+               <i class="el-icon-delete"  @click="dele(scope.row.thid)" style="margin-left: 30px;margin-right: 30px" ></i>
+              </div>
             </div>
           </el-popover>
          <el-popover trigger="hover" placement="left">
+           <span>单击添加一条记录</span>
            <div slot="reference" style="color: blue">
-             <i class="el-icon-document-add"  @click="dele(scope.row.thid)"></i>
+             <div class="icon">
+                <i class="el-icon-document-add"  @click="dele(scope.row.thid)"></i>
+             </div>
+
            </div>
          </el-popover>
 
@@ -45,6 +53,11 @@
    </el-table>
   </div>
 </template>
+<style>
+  .icon{
+    float: left;
+  }
+</style>
 <script>
   import axios from 'axios'
   import ElButton from "../../../../node_modules/element-ui/packages/button/src/button";
