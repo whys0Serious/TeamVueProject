@@ -17,6 +17,7 @@
                 <el-menu-item index="1-1"><router-link to="/Mannerge/selectcou">商品查询</router-link></el-menu-item>
                 <el-menu-item index="1-2"><router-link to="/Mannerge/userselect">用户查询</router-link></el-menu-item>
                 <el-menu-item index="1-2"><router-link to="/Mannerge/teachershow">教师查询</router-link></el-menu-item>
+                <el-menu-item index="1-2"><router-link to="/Mannerge/data">数据查询</router-link></el-menu-item>
               </el-menu-item-group>
             </el-submenu>
           </el-menu>
