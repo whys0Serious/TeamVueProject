@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <!--导航栏-->
     <div id="daohang">
       <div class="daohang">
@@ -322,6 +322,8 @@
       <img style="width: 100%;height: 300px;" src="http://pylgiouvi.bkt.clouddn.com/htmlfoot.jpg"/>
     </div>
     </div>
+
+  </div>
 
 
 </template>
