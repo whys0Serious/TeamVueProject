@@ -25,7 +25,6 @@ import adminupdate from '@/components/后台/管理员/adminupdate'
 import CoursePage from '@/components/CoursePage'
 import HighCourse from '@/components/HighCourse'
 import MiddleCourse from '@/components/MiddleCourse'
-import ApplyReturn from '@/components/ApplyReturn'
 import dingdan from '@/components/dingdan'
 
 import ElementUI from 'element-ui';
