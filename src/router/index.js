@@ -25,6 +25,7 @@ import adminupdate from '@/components/后台/管理员/adminupdate'
 import CoursePage from '@/components/CoursePage'
 import HighCourse from '@/components/HighCourse'
 import MiddleCourse from '@/components/MiddleCourse'
+import ApplyReturn from '@/components/ApplyReturn'
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -101,6 +102,7 @@ export default new Router({
     },
     {
       path:"/cash",
+      name:'cash',
       component:cash
     },
     {
@@ -123,6 +125,11 @@ export default new Router({
     {
       path:'/adminupdate',
       component:adminupdate
+    },
+    {
+      path:'/ApplyReturn',
+      name:ApplyReturn,
+      component:ApplyReturn
     }
   ]
 })

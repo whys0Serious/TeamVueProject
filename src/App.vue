@@ -32,7 +32,7 @@
             </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item><a href="#" @click="logout" class="login">注销</a></el-dropdown-item>
-              <el-dropdown-item><a href="http://localhost:8088/logout" class="login">详细信息</a></el-dropdown-item>
+              <el-dropdown-item><router-link class="login" :to="{name:'cash',params:{uid:this.user.uid}}">详细信息</router-link></el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
           <el-image style="width: 50px; height: 50px;border-radius:25px;margin-left: 30px" :src="image" ></el-image>
@@ -53,7 +53,8 @@
       return{
         flag:false,
         msg:'',
-        image:''
+        image:'',
+        user:''
       }
     },
     methods:{
@@ -68,6 +69,7 @@
     mounted(){
       axios.get("api/getuseradnima").then(res=>{
         this.msg=res.data.uname
+        this.user=res.data;
         this.image=res.data.imageUrl
         this.flag=true
         if(res.data==""||res.data==null){
