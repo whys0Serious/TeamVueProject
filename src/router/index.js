@@ -10,6 +10,7 @@ import selectcou from '@/components/后台/selectcou'
 import Mannerge from '@/components/后台/Mannerge'
 import cash from '@/components/后台/cash'
 import cart from '@/components/后台/cart'
+import teachershow from '@/components/后台/教师管理/teachershow'
 
 import foegetpwd from '@/components/后台/foegetpwd'
 import ind from '@/components/index'
@@ -26,6 +27,7 @@ import CoursePage from '@/components/CoursePage'
 import HighCourse from '@/components/HighCourse'
 import MiddleCourse from '@/components/MiddleCourse'
 import ApplyReturn from '@/components/ApplyReturn'
+import dingdan from '@/components/dingdan'
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -88,6 +90,11 @@ export default new Router({
         {path:'addCourse',name:'addCourse',component:addCourse},
         {path:'updateCourse/:id',name:'updateCourse',component:updateCourse},
         {path:'userselect',name:'userselect',component:userselect},
+        {
+          path: 'teachershow',
+          name: 'teachershow',
+          component: teachershow
+        },
       ]
     },
     {
@@ -130,6 +137,11 @@ export default new Router({
       path:'/ApplyReturn',
       name:ApplyReturn,
       component:ApplyReturn
-    }
+    },
+    {
+      path:"/dingdan",
+      name:'dingdan',
+      component:dingdan,
+    },
   ]
 })

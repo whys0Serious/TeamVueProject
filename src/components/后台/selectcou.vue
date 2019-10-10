@@ -28,11 +28,18 @@
         </el-table-column>
         <el-table-column label="课程图片" prop="mainpic" width="120" align="center">
           <template   slot-scope="scope">
-            <el-image style="width: 100px; height: 100px" :src="scope.row.mainpic"
-            ></el-image>
-            <el-upload class="avatar-uploader" action="api/uploaduseima" :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
-              <img v-if="imageUrl" :src="imageUrl" class="avatar">
-              <i class="el-icon-more"></i>
+            <el-image
+              style="width: 100px; height: 100px"
+              :src="scope.row.mainpic"
+              ></el-image>
+            <el-upload
+              v-loading="loading"
+              class="avatar-uploader"
+              action="api/uploaduseima"
+              :show-file-list="false"
+              :on-success="handleAvatarSuccess"
+              :before-upload="beforeAvatarUpload">
+              <i class="el-icon-more" @click="upima(scope.row.cid)"></i>
             </el-upload>
           </template>
         </el-table-column>
@@ -70,6 +77,8 @@
   export default {
     data() {
       return {
+        imageUrl:'',
+        cid:'',
         users:[],
         total:50,
         params:{
@@ -80,6 +89,30 @@
       }
     },
     methods: {
+      handleAvatarSuccess(res, file) {
+        this.imageUrl = URL.createObjectURL(file.raw);
+        axios.get("api/upima?id="+this.cid+"&ima="+res).then(res=>{
+            this.$message.success("修改图片完成")
+          this.query()
+        })
+        this.loading=false
+      },
+      upima:function (val) {
+       this.cid=val
+      },
+      beforeAvatarUpload(file) {
+        this.loading=true
+        const isJPG = file.type === 'image/jpeg';
+        const isLt2M = file.size / 1024 / 1024 < 2;
+
+        if (!isJPG) {
+          this.$message.error('上传头像图片只能是 JPG 格式!');
+        }
+        if (!isLt2M) {
+          this.$message.error('上传头像图片大小不能超过 2MB!');
+        }
+        return /*isJPG && isLt2M*/true;
+      },
       updateuser:function(id) {
         this.$router.push({
           path:'/Mannerge/updateCourse/'+id,

@@ -4,10 +4,17 @@
       <el-row><h3>登陆</h3></el-row>
     <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
       <el-form-item label="用户名" prop="name">
-        <el-input v-model="ruleForm.name" @blur="gtepass"></el-input>
+        <el-input v-model="ruleForm.name" @blur="gtepass" placeholder="输入用户名"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="pass">
-        <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
+        <el-input type="password" v-model="ruleForm.pass" autocomplete="off" placeholder="输入密码"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-select v-model="quanxian" placeholder="请选择登陆类型">
+          <el-option value="用户"></el-option>
+          <el-option value="管理员"></el-option>
+          <el-option value="superman"></el-option>
+        </el-select>
       </el-form-item>
       <el-checkbox v-model="checked" style="margin-left: 60px">记住密码</el-checkbox>
       <span class="pwd"><a href="http://localhost:8080/#/foegetpwd">忘记密码</a></span>
@@ -47,8 +54,12 @@
   import ElButton from "../../../node_modules/element-ui/packages/button/src/button";
   import axios from 'axios'
   import ElCheckbox from "../../../node_modules/element-ui/packages/checkbox/src/checkbox";
+  import ElFormItem from "../../../node_modules/element-ui/packages/form/src/form-item";
+  import ElOption from "../../../node_modules/element-ui/packages/select/src/option";
   export default {
     components: {
+      ElOption,
+      ElFormItem,
       ElCheckbox,
       ElButton,
       ElIcon,
@@ -70,6 +81,7 @@
         }
       };
       return {
+        quanxian:'',
         checked:true,
         ruleForm: {
           pass: '',
@@ -100,24 +112,47 @@
         this.user.uname=this.ruleForm.name
         this.user.pass=this.ruleForm.pass
         console.log(this.user)
-        axios.post("api/login",{"uname":this.user.uname,"pass": this.user.pass}) .then(res=>{
-          this.$message(res.data)
-          if(res.data=="登陆成功"){
-            if(this.checked){
-              axios.get("api/rememberme?name="+this.user.uname+"&pass="+this.user.pass,) .then(res=>{
-              })
-            }
+        if(this.quanxian=="用户"){
+            alert(this.quanxian)
+          axios.post("api/login",{"uname":this.user.uname,"pass": this.user.pass}) .then(res=>{
+            if(res.data=="登陆成功"){
+              if(this.checked){
+                axios.get("api/rememberme?name="+this.user.uname+"&pass="+this.user.pass,) .then(res=>{
+                })
+              }
               this.$router.push("/")
-            this.$router.go(0);
-          }
-        })
-        this.$refs[formName].validate((valid) => {
+              this.$router.go(0);
+            }
+          })
+        }else if(this.quanxian=="管理员"){
+          alert(this.quanxian)
+          axios.post("api/loginAdmin",{"name":this.user.uname,pass: this.user.pass}) .then(res=>{
+            if(res.data=="登陆成功"){
+              if(this.checked){
+                axios.get("api/rememberme?name="+this.user.uname+"&pass="+this.user.pass,) .then(res=>{
+                })
+              }
+              this.$router.push("/Mannerge")
+              this.$router.go(0);
+            }
+          })
+        }else if(this.quanxian=="superman"){
+          axios.post("api/loginSysAdmin",{"name":this.user.uname,"pass": this.user.pass}) .then(res=>{
+            this.$message(res.data)
+            if(res.data=="登陆成功"){
+              if(this.checked){
+                axios.get("api/rememberme?name="+this.user.uname+"&pass="+this.user.pass,) .then(res=>{
+                })
+              }
+              this.$router.push("/Mannerge")
+              this.$router.go(0);
+            }
+          })
+        }
 
+        this.$refs[formName].validate((valid) => {
           if (valid) {
             this.$message.error('提交成功!!');
-
-
-
           } else {
             this.$message.error('提交失败!!');
             return false;

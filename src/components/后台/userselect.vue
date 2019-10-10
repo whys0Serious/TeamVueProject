@@ -1,5 +1,5 @@
 <template>
-  <div id="right">
+  <div id="right" style="float: inherit;width: 700px;">
     <div id="from">
     <el-table
       :data="user"
@@ -14,7 +14,7 @@
           <el-image
             style="width: 100px; height: 100px"
             :src="scope.row.imageUrl"
-            :fit="fit"></el-image>
+            ></el-image>
           <el-upload
             class="avatar-uploader"
             action="api/uploaduseima"
@@ -22,7 +22,7 @@
             :on-success="handleAvatarSuccess"
             :before-upload="beforeAvatarUpload">
             <img v-if="imageUrl" :src="imageUrl" class="avatar">
-            <i class="el-icon-more"></i>
+            <i class="el-icon-more" @click="upusima(scope.row.uid)"></i>
           </el-upload>
         </template>
       </el-table-column>
@@ -60,9 +60,9 @@
     <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-      :current-page="currentPage4"
+      :current-page="currentPage"
       :page-sizes="[5, 10, 20, 40]"
-      :page-size="10"
+      :page-size="5"
       layout="total, sizes, prev, pager, next, jumper"
       :total="total">
     </el-pagination>
@@ -103,11 +103,12 @@
       ElRow},
     data() {
       return {
+          uid:'',
         imageUrl:'',
         keysearch:'',
-        currentPage4: 4,
+        currentPage: 1,
         page:1,
-        size:10,
+        size:5,
         user:[],
         total:50
       }
@@ -118,6 +119,9 @@
       },
       imageURL123:function (val) {
         alert(val)
+      },
+      upusima:function (val) {
+        this.uid=val
       },
       handleClick:function(val){
 
@@ -133,8 +137,11 @@
         this.query()
       },
       handleAvatarSuccess(res, file) {
-        alert(file.row.uid)
-        this.loading=false
+          axios.get("api/upuserima?id="+this.uid+"&ima="+res).then(res=>{
+            this.$message.success("修改图片完成")
+            this.query()
+          })
+          this.loading=false
       },
       beforeAvatarUpload(file) {
         this.loading=true

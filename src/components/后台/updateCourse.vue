@@ -7,6 +7,21 @@
         <el-form-item label="课程名称" style="width: 20%;margin-left: 35%;padding-top: 1%" prop="cname">
           <el-input v-model="course.cname" ></el-input>
         </el-form-item>
+        <el-form-item label="图片"  style="width: 20%;margin-left: 35%;padding-top: 1%" prop="mainpic">
+          <el-image
+            style="width: 100px; height: 100px"
+            :src="course.mainpic"
+            :fit="fit"></el-image>
+          <el-upload
+            v-loading="loading"
+            class="avatar-uploader"
+            action="api/uploaduseima"
+            :show-file-list="false"
+            :on-success="handleAvatarSuccess"
+            :before-upload="beforeAvatarUpload">
+            <i class="el-icon-more"></i>
+          </el-upload>
+        </el-form-item>
         <el-form-item label="课程售价" style="width: 20%;margin-left: 35%;margin-top: 1%" prop="price">
           <el-input v-model.number="course.price"></el-input>
         </el-form-item>
@@ -45,7 +60,9 @@
 
 <script>
   import axios from 'axios'
+  import ElFormItem from "../../../node_modules/element-ui/packages/form/src/form-item";
   export default {
+    components: {ElFormItem},
     data(){
       var checkAge = (rule, value, callback) => { //就是我们的回调函数，需要大家注意的是，这个没有在return的对象中，在data中
         if (!value) {
@@ -74,10 +91,12 @@
         }, 1000);
       };
       return{
+        loading:false,
         course:{
           cid:'',
           cname:'',
           price:'',
+          mainpic:'',
           info:' ',
           time:'',
           coutime: '',
@@ -112,11 +131,28 @@
       axios.post(url).then(res=>{
         if (res.data!=null){
           this.course=res.data
-          alert(id.cname)
         }
       })
     },
     methods:{
+      handleAvatarSuccess(res, file) {
+        this.imageUrl = URL.createObjectURL(file.raw);
+        this.course.mainpic=res
+        this.loading=false
+      },
+      beforeAvatarUpload(file) {
+        this.loading=true
+        const isJPG = file.type === 'image/jpeg';
+        const isLt2M = file.size / 1024 / 1024 < 2;
+
+        if (!isJPG) {
+          this.$message.error('上传头像图片只能是 JPG 格式!');
+        }
+        if (!isLt2M) {
+          this.$message.error('上传头像图片大小不能超过 2MB!');
+        }
+        return isJPG && isLt2M;
+      },
       up:function () {
         var url="api/update"
         axios.post(url,this.course).then(res=>{
