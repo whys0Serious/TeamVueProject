@@ -23,7 +23,7 @@
           :on-success="handleAvatarSuccess"
           :before-upload="beforeAvatarUpload">
           <img v-if="imageUrl" :src="imageUrl" class="avatar">
-          <i class="el-icon-more"></i>
+          <i class="el-icon-more" @click="upusima(scope.row.uid)"></i>
         </el-upload>
       </template>
     </el-table-column>
@@ -92,6 +92,7 @@
     data() {
       return {
         imageUrl:'',
+        uid:'',
         keysearch:'',
         currentPage4: 4,
         page:1,
@@ -106,6 +107,9 @@
       },
       handleClick:function(val){
       },
+      upusima:function (val) {
+        this.uid=val
+      },
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
         this.size=val
@@ -117,7 +121,10 @@
         this.query()
       },
       handleAvatarSuccess(res, file) {
-        alert(file.row.uid)
+        axios.get("api/upuserima?id="+this.cid+"&ima="+res).then(res=>{
+            this.$message.success("修改图片完成")
+            this.query()
+          })
         this.loading=false
       },
       beforeAvatarUpload(file) {

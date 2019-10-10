@@ -3,7 +3,7 @@
   <div id="big">
 
     <!--左边侧边栏-->
-    <div id="left">
+    <div id="left"style="float: left;">
       <el-row class="tac">
         <el-col :span="20">
           <h5>后台查询</h5>
@@ -16,20 +16,27 @@
               <el-menu-item-group>
                 <el-menu-item index="1-1"><router-link to="/Mannerge/selectcou">商品查询</router-link></el-menu-item>
                 <el-menu-item index="1-2"><router-link to="/Mannerge/userselect">用户查询</router-link></el-menu-item>
+                <el-menu-item index="1-2"><router-link to="/Mannerge/teachershow">教师查询</router-link></el-menu-item>
               </el-menu-item-group>
             </el-submenu>
           </el-menu>
         </el-col>
       </el-row>
     </div>
-
-
-
-
-
     <router-view />
   </div>
 </template>
+<script>
+  export default{
+      methods:{
+        handleOpen:function () {
+  },
+        handleClose:function () {
+
+        }
+      }
+  }
+</script>
 <style>
   /*总的div*/
   #big{
