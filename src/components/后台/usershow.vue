@@ -105,7 +105,6 @@
         alert(val)
       },
       handleClick:function(val){
-        location.href.val.imageUrl
       },
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`);

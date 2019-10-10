@@ -12,8 +12,8 @@
         <!--搜索框-->
         <div class="search">
 
-          <el-autocomplete v-model="state" :fetch-suggestions="querySearchAsync" placeholder="请输入内容" @select="handleSelect"></el-autocomplete>
-          <el-button icon="el-icon-search" size="smile" circle></el-button>
+          <el-autocomplete v-model="state" :fetch-suggestions="querySearchAsync" placeholder="请输入内容" @keydown.enter="handleSelect" ></el-autocomplete>
+          <el-button icon="el-icon-search" size="smile" circle @click="handleSelect"></el-button>
           <!--<div id="src"> <img src="https://shared-https.ydstatic.com/ke/web/v1.1.3/32aac580.png"/></div>-->
         </div>
         <div>
@@ -53,7 +53,8 @@
       return{
         flag:false,
         msg:'',
-        image:''
+        image:'',
+        state:''
       }
     },
     methods:{
@@ -63,6 +64,28 @@
             this.$router.go(0);
           this.flag=false
         })
+      },
+      handleSelect:function () {
+          axios.get("api/findbycname?cname="+this.state).then(res=>{
+            this.$router.push({name:'CourseInfo',params:{cid:res.data.cid,thiid:res.data.thid}})
+          }).catch((error)=>{
+              console.log(error)
+          })
+
+      },
+      querySearchAsync:function (str,callback) {
+          var list=[{}]
+        console.log(str)
+          axios.get("api/findbyclike?like="+str).then(res=>{
+              for(let i of res.data){
+                  i.value=i.cname;
+              }
+              list=res.data
+            callback(list)
+
+          }).catch((error)=>{
+              console.log(error)
+          })
       }
     },
     mounted(){

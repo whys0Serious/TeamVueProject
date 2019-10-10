@@ -6,6 +6,18 @@
       <el-form-item label="课程名称" style="width: 20%;margin-left: 35%;padding-top: 1%" prop="cname">
         <el-input v-model="course.cname"></el-input>
       </el-form-item>
+      <el-form-item label="上传图片"  style="width: 20%;margin-left: 35%;padding-top: 1%" prop="name">
+        <el-upload
+          v-loading="loading"
+          class="avatar-uploader"
+          action="api/uploaduseima"
+          :show-file-list="false"
+          :on-success="handleAvatarSuccess"
+          :before-upload="beforeAvatarUpload">
+          <img v-if="imageUrl" :src="imageUrl" class="avatar">
+          <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+        </el-upload>
+      </el-form-item>
       <el-form-item label="课程售价" style="width: 20%;margin-left: 35%;margin-top: 1%" prop="price">
         <el-input v-model.number="course.price"></el-input>
       </el-form-item>
@@ -44,7 +56,9 @@
 
 <script>
   import axios from 'axios'
+  import ElFormItem from "../../../node_modules/element-ui/packages/form/src/form-item";
   export default {
+    components: {ElFormItem},
     data(){
       var checkAge = (rule, value, callback) => { //就是我们的回调函数，需要大家注意的是，这个没有在return的对象中，在data中
         if (!value) {
@@ -73,12 +87,14 @@
         }, 1000);
       };
       return{
+        loading:false,
         course:{
           cname:'',
           price:'',
           info:' ',
           time:'',
           cou_time: '',
+          mainpic:'',
           ctid:'',
         },
         rules:{    // 就是我们在el-form中绑定的rules，进行表单的验证
@@ -105,6 +121,24 @@
       }
     },
     methods:{
+      handleAvatarSuccess(res, file) {
+        this.imageUrl = URL.createObjectURL(file.raw);
+        this.course.mainpic=res
+        this.loading=false
+      },
+      beforeAvatarUpload(file) {
+        this.loading=true
+        const isJPG = file.type === 'image/jpeg';
+        const isLt2M = file.size / 1024 / 1024 < 2;
+
+        if (!isJPG) {
+          this.$message.error('上传头像图片只能是 JPG 格式!');
+        }
+        if (!isLt2M) {
+          this.$message.error('上传头像图片大小不能超过 2MB!');
+        }
+        return isJPG && isLt2M;
+      },
       add:function () {
         var url="api/add";
         axios.post(url,this.course).then(res=>{
@@ -123,6 +157,30 @@
 </script>
 
 <style>
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
+  .avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 140px;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 128px;
+    height: 128px;
+    line-height: 178px;
+    text-align: center;
+  }
   #addcouse{
     width:1360px;
     height: 600px;
