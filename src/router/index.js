@@ -127,11 +127,6 @@ export default new Router({
       component:adminupdate
     },
     {
-      path:'/ApplyReturn',
-      name:ApplyReturn,
-      component:ApplyReturn
-    },
-    {
       path:"/dingdan",
       name:'dingdan',
       component:dingdan,
