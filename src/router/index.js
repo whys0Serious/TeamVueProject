@@ -26,6 +26,7 @@ import adminupdate from '@/components/后台/管理员/adminupdate'
 import CoursePage from '@/components/CoursePage'
 import HighCourse from '@/components/HighCourse'
 import MiddleCourse from '@/components/MiddleCourse'
+import dingdan from '@/components/dingdan'
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -129,6 +130,11 @@ export default new Router({
     {
       path:'/adminupdate',
       component:adminupdate
-    }
+    },
+    {
+      path:"/dingdan",
+      name:'dingdan',
+      component:dingdan,
+    },
   ]
 })
