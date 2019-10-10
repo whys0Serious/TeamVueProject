@@ -15,9 +15,7 @@
                <el-tag size="medium"> <i class="el-icon-edit" style="width: 40px" @click="upima(scope.row.thid)">
                </i></el-tag>
              </div>
-
            </el-popover>
-
          </el-upload>
        </template>
      </el-table-column>

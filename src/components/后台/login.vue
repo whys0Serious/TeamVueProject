@@ -113,8 +113,8 @@
         this.user.pass=this.ruleForm.pass
         console.log(this.user)
         if(this.quanxian=="用户"){
+            alert(this.quanxian)
           axios.post("api/login",{"uname":this.user.uname,"pass": this.user.pass}) .then(res=>{
-            this.$message(res.data)
             if(res.data=="登陆成功"){
               if(this.checked){
                 axios.get("api/rememberme?name="+this.user.uname+"&pass="+this.user.pass,) .then(res=>{
@@ -125,26 +125,26 @@
             }
           })
         }else if(this.quanxian=="管理员"){
-          axios.post("api/loginAdmin",{"uname":this.user.uname,"pass": this.user.pass}) .then(res=>{
-            this.$message(res.data)
+          alert(this.quanxian)
+          axios.post("api/loginAdmin",{"name":this.user.uname,pass: this.user.pass}) .then(res=>{
             if(res.data=="登陆成功"){
               if(this.checked){
                 axios.get("api/rememberme?name="+this.user.uname+"&pass="+this.user.pass,) .then(res=>{
                 })
               }
-              this.$router.push("/")
+              this.$router.push("/Mannerge")
               this.$router.go(0);
             }
           })
-        }else {
-          axios.post("api/loginSysAdmin",{"uname":this.user.uname,"pass": this.user.pass}) .then(res=>{
+        }else if(this.quanxian=="superman"){
+          axios.post("api/loginSysAdmin",{"name":this.user.uname,"pass": this.user.pass}) .then(res=>{
             this.$message(res.data)
             if(res.data=="登陆成功"){
               if(this.checked){
                 axios.get("api/rememberme?name="+this.user.uname+"&pass="+this.user.pass,) .then(res=>{
                 })
               }
-              this.$router.push("/")
+              this.$router.push("/Mannerge")
               this.$router.go(0);
             }
           })
