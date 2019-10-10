@@ -27,8 +27,15 @@
 
         <div v-if="flag">
           <el-dropdown>
-            <span class="el-dropdown-link">
-               <h3><a href="http://localhost:8080/#/login"></a>{{msg}}<i class="el-icon-arrow-down el-icon--right"></i></h3>
+            <span class="el-dropdown-link" >
+              {{msg}}
+              <el-popover trigger="click" placement="right">
+                <span>单机展开</span>
+                <div slot="reference">
+                   <i class="el-icon-arrow-down" ></i>
+                </div>
+              </el-popover>
+
             </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item><a href="#" @click="logout" class="login">注销</a></el-dropdown-item>
@@ -47,7 +54,9 @@
 </style>
 <script>
   import axios from 'axios'
+  import ElPopover from "../node_modules/element-ui/packages/popover/src/main";
   export default {
+    components: {ElPopover},
     name: 'App',
     data(){
       return{

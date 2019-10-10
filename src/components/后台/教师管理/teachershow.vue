@@ -19,11 +19,26 @@
          </el-upload>
        </template>
      </el-table-column>
-
-     <el-table-column label="操作" width="100px" fixed="right">
+     <el-table-column label="操作" width="200px" fixed="right">
        <template slot-scope="scope">
-         <el-icon class="el-icon-edit" @click="upima"></el-icon>
-         <el-icon class="el-icon-delete" style="margin-left: 30px"></el-icon>
+         <el-popover trigger="hover" placement="bottom" style="height: 20px">
+           <span style="color: orange">点击修改图片</span>
+           <div slot="reference" style="color: orange">
+             <i class="el-icon-edit" @click="upth(scope.row.thid)" ></i>
+           </div>
+         </el-popover>
+          <el-popover trigger="hover" placement="left">
+            <span>单击删除</span>
+            <div slot="reference" style="color: red">
+              <i class="el-icon-delete"  @click="dele(scope.row.thid)" style="margin-left: 30px;margin-right: 30px" ></i>
+            </div>
+          </el-popover>
+         <el-popover trigger="hover" placement="left">
+           <div slot="reference" style="color: blue">
+             <i class="el-icon-document-add"  @click="dele(scope.row.thid)"></i>
+           </div>
+         </el-popover>
+
        </template>
      </el-table-column>
 
@@ -54,6 +69,18 @@
       handleimg:function (res,file) {
         axios.get("api/upthima?id="+this.thid+"&img="+res).then(res=>{
             this.query();
+        })
+      },
+      upth:function (val) {
+        this.$router.push({name:'',params:{id:val}})
+      },
+      dele:function (val) {
+        axios.get("api/deleteteacher?id="+val).then(res=>{
+            if(res.data){
+                this.query()
+            }else {
+                this.$message.error("删除失败")
+            }
         })
       },
       upima:function (res) {
