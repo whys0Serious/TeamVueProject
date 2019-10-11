@@ -28,6 +28,7 @@
   </div>
 </template>
 <script>
+  import axios from 'axios'
   export default{
       methods:{
         handleOpen:function () {
@@ -35,7 +36,15 @@
         handleClose:function () {
 
         }
-      }
+      },
+    mounted(){
+          axios.get("api/getuseradnima").then(res=>{
+              if(res.data==null||res.data==""){
+                  this.$router.push("/login")
+              }
+          })
+    }
+
   }
 </script>
 <style>
