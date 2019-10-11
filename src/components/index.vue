@@ -40,8 +40,8 @@
             <h1 class="classname">{{cs.cname}}</h1>
             <div class="classtime">时间:{{cs.time}}<ins>|</ins>{{cs.cou_time}} 课时</div>
             <div class="tcher">
-              <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-              <span>包易正</span>
+              <img class="tcherimg" :src="cs.thpic"/>
+              <span>{{cs.thname}}</span>
             </div>
             <div class="foot">
               <div class="buy">
@@ -91,8 +91,8 @@
               <h1 class="classname">{{h.cname}}</h1>
               <div class="classtime">时间:{{h.time}}<ins>|</ins>{{h.cou_time}}课时</div>
               <div class="tcher">
-                <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                <span>包易正</span>
+                <img class="tcherimg" :src="h.thpic"/>
+                <span>{{h.thname}}</span>
               </div>
               <div class="foot">
                 <div class="buy">
@@ -123,8 +123,8 @@
                 <h1 class="classname">{{h.cname}}</h1>
                 <div class="classtime">时间:{{h.time}}<ins>|</ins>{{h.cou_time}}课时</div>
                 <div class="tcher">
-                  <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                  <span>包易正</span>
+                  <img class="tcherimg" :src="h.thpic"/>
+                  <span>{{h.thname}}</span>
                 </div>
                 <div class="foot">
                   <div class="buy">
@@ -175,8 +175,8 @@
                     <h1 class="classname">{{jun.cname}}</h1>
                     <div class="classtime">时间:{{jun.time}}<ins>|</ins>{{jun.cou_time}}课时</div>
                     <div class="tcher">
-                      <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                      <span>包易正</span>
+                      <img class="tcherimg" :src="jun.thpic"/>
+                      <span>{{jun.thname}}</span>
                     </div>
                     <div class="foot">
                       <div class="buy">
@@ -207,8 +207,8 @@
                     <h1 class="classname">{{jun.cname}}</h1>
                     <div class="classtime">时间:{{jun.time}}<ins>|</ins>{{jun.cou_time}}课时</div>
                     <div class="tcher">
-                      <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                      <span>包易正</span>
+                      <img class="tcherimg" :src="jun.thpic"/>
+                      <span>{{jun.thname}}</span>
                     </div>
                     <div class="foot">
                       <div class="buy">
@@ -258,8 +258,8 @@
                     <h1 class="classname">{{hig.cname}}</h1>
                     <div class="classtime">时间:{{hig.time}}<ins>|</ins>{{hig.cou_time}}课时</div>
                     <div class="tcher">
-                      <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                      <span>包易正</span>
+                      <img class="tcherimg" :src="hig.thpic"/>
+                      <span>{{hig.thname}}</span>
                     </div>
                     <div class="foot">
                       <div class="buy">
@@ -290,8 +290,8 @@
                     <h1 class="classname">{{hig.cname}}</h1>
                     <div class="classtime">时间:{{hig.time}}<ins>|</ins>{{hig.cou_time}}课时</div>
                     <div class="tcher">
-                      <img class="tcherimg" src="http://pylgiouvi.bkt.clouddn.com/image%20%282%29.png"/>
-                      <span>包易正</span>
+                      <img class="tcherimg" :src="hig.thpic"/>
+                      <span>{{hig.thname}}</span>
                     </div>
                     <div class="foot">
                       <div class="buy">

@@ -31,6 +31,12 @@ import dingdan from '@/components/dingdan'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
+// 引入echarts
+
+import echarts from 'echarts';
+
+Vue.use(echarts);
+
 Vue.use(ElementUI);
 Vue.use(Router)
 export default new Router({
