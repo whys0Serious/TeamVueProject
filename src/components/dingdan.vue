@@ -28,15 +28,21 @@
         <el-table :data="order" style="width: 100%" :row-class-name="tableRowClassName">
           <el-table-column prop="tradcname" label="购买的课程" width="180" align="center">
           </el-table-column>
-          <el-table-column prop="tradacount" label="金额" width="180" align="center">
-          </el-table-column>
+            <el-table-column prop="tradacount"  label="金额" width="180" align="center">
+            </el-table-column>
           <el-table-column prop="tradnum" label="订单号" width="180" align="center">
           </el-table-column>
           <el-table-column prop="tradtime" label="下单时间" width="180" align="center">
           </el-table-column>
-          <el-table-column prop="tradstatus" label="状态" width="180" align="center">
+           <el-table-column prop="tradstatus" label="状态" width="180" align="center">
+            </el-table-column>
+          <el-table-column
+            label="操作"
+            width="100">
+            <template slot-scope="scope">
+              <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+            </template>
           </el-table-column>
-
         </el-table>
       </div>
     </div>
@@ -66,15 +72,34 @@
       axios.post("/api/findOrderByUid",{uid:this.$route.params.uid}).then(res=>{
             this.order=res.data;
       })
+      if(this.$route.query!=null){
+        axios.post("/api/alipay_callback",{app_id:this.$route.query.app_id,
+          total_amount:this.$route.query.total_amount,out_trade_no:this.$route.query.out_trade_no}).then(res=>{
+          this.order=res.data;
+        })
+      }
 
-      axios.post("/api/alipay_callback",{app_id:this.$route.query.app_id,
-        total_amount:this.$route.query.total_amount,out_trade_no:this.$route.query.out_trade_no}).then(res=>{
-        this.order=res.data;
-      })
       axios.get("api/getuseradnima").then(res=>{
           this.user=res.data;
       })
-   }
+
+   },
+    methods: {
+      handleClick(row) {
+        axios.post("/api/payback",{tradacount:row.tradacount,tradcname:row.tradcname,tradnum:row.tradnum}).then(res=> {
+          if(res.status==200){
+            //重定向
+            let routerData = this.$router.resolve({path:'/ApplyText',query:{htmls:res.data}})
+            this.htmls = res.data
+            window.open(routerData.href,'_blank')
+            const div = document.createElement('div');
+            div.innerHTML = htmls;
+            document.body.appendChild(div);
+            document.forms [0] .submit();
+          }
+        })
+      }
+    }
   }
 
 </script>
