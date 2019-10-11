@@ -8,7 +8,7 @@
     <div id="coursetitle"><span>{{course.cname}}</span></div>
     <div class="courseinfo"><span>主讲老师：{{teacher.thname}}</span></div>
     <div class="courseinfo"><span>课程时长：{{course.coutime}}</span></div>
-    <div class="courseinfo"><span>开课时间：{{course.time|formatTime('yyyy-MM-dd')}}</span></div>
+    <div class="courseinfo"><span>开课时间：{{course.time}}</span></div>
     <div class="courseinfo"><span>已报名：{{course.details}}人</span></div>
     <div class="courseinfo"><span>讲师联系邮箱：{{teacher.themail}}</span></div>
     <div id="button"><el-button style="border-radius:0px;background-color: sandybrown;border: 0px; width: 350px;height: 55px">

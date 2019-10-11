@@ -4,6 +4,7 @@
     <div class="hadder">
       <!--头部内容整体-->
       <div id="hadder">
+        <div style="float: left;margin-top: 20px"><el-page-header @back="dasd"></el-page-header></div>
         <div id="logo" ><img style=" width: 139px;height: 34px;margin-top: 13px" src="http://pylgiouvi.bkt.clouddn.com/logo.png"/></div>
         <div id="line" ></div>
         <div class="index"><p><a href="">首页</a></p></div>
@@ -56,8 +57,11 @@
 <script>
   import axios from 'axios'
   import ElPopover from "../node_modules/element-ui/packages/popover/src/main";
+  import ElPageHeader from "../node_modules/element-ui/packages/page-header/src/main";
   export default {
-    components: {ElPopover},
+    components: {
+      ElPageHeader,
+      ElPopover},
     name: 'App',
     data(){
       return{
@@ -69,6 +73,9 @@
       }
     },
     methods:{
+      dasd:function () {
+        this.$router.back()
+      },
       logout:function () {
         axios.get("api/logout").then(res=>{
           if(res.data=="注销成功")
@@ -78,14 +85,14 @@
       },
       handleSelect:function () {
           axios.get("api/findbycname?cname="+this.state).then(res=>{
-            this.$router.push({name:'CourseInfo',params:{cid:res.data.cid,thiid:res.data.thid}})
+            this.$router.push({name:'CourseInfo',params:{cid:res.data.cid,thid:res.data.thid}})
           }).catch((error)=>{
               console.log(error)
           })
 
       },
       querySearchAsync:function (str,callback) {
-          var list=[{}]
+        var list=[{}]
         console.log(str)
           axios.get("api/findbyclike?like="+str).then(res=>{
               for(let i of res.data){
@@ -93,7 +100,6 @@
               }
               list=res.data
             callback(list)
-
           }).catch((error)=>{
               console.log(error)
           })

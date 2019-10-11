@@ -11,6 +11,7 @@ import Mannerge from '@/components/后台/Mannerge'
 import cart from '@/components/后台/cart'
 import data from '@/components/后台/data'
 import teachershow from '@/components/后台/教师管理/teachershow'
+import teacheradd from '@/components/后台/教师管理/teacheradd'
 
 import foegetpwd from '@/components/后台/foegetpwd'
 import ind from '@/components/index'
@@ -46,11 +47,7 @@ export default new Router({
       name: 'ind',
       component: ind
     },
-    {
-      path: '/updateuser',
-      name: 'updateuser',
-      component: updateuser
-    },
+
     {path:'/usershow',
       component:usershow
     },
@@ -101,6 +98,16 @@ export default new Router({
           name: 'teachershow',
           component: teachershow
         },
+        {
+          path:"teacheradd",
+          name:'teacheradd',
+          component:teacheradd,
+        },
+        {
+          path: 'updateuser',
+          name: 'updateuser',
+          component: updateuser
+        },
       ]
     },
     {
@@ -139,5 +146,6 @@ export default new Router({
       name:'dingdan',
       component:dingdan,
     },
+
   ]
 })

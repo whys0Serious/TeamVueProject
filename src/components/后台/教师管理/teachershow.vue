@@ -9,8 +9,8 @@
        <template slot-scope="scope">
          <el-image :src="scope.row.thpic" style="width: 80px" ></el-image>
          <el-upload action="api/uploaduseima" :on-success="handleimg" :show-file-list="false">
-           <el-popover trigger="hover" placement="top">
-             <p>点击修改图片</p>
+           <el-popover trigger="hover" placement="left">
+             <span >点击修改图片</span>
              <div slot="reference" class="name-wrapper">
                <el-tag size="medium"> <i class="el-icon-edit" style="width: 40px" @click="upima(scope.row.thid)">
                </i></el-tag>
@@ -21,8 +21,8 @@
      </el-table-column>
      <el-table-column label="操作" width="200px" fixed="right">
        <template slot-scope="scope">
-         <el-popover trigger="hover" placement="left" style="height: 20px">
-           <span style="color: orange">点击修改图片</span>
+         <el-popover trigger="hover" placement="left" >
+           <span style="color: orange">点击修改这条记录</span>
            <div slot="reference" style="color: orange">
              <div class="icon">
               <i class="el-icon-edit" @click="upth(scope.row.thid)" ></i>
@@ -30,7 +30,7 @@
            </div>
          </el-popover>
           <el-popover trigger="hover" placement="left">
-            <span>单击删除</span>
+            <span style="color: red">单击删除</span>
             <div slot="reference" style="color: red">
               <div class="icon">
                <i class="el-icon-delete"  @click="dele(scope.row.thid)" style="margin-left: 30px;margin-right: 30px" ></i>
@@ -41,16 +41,22 @@
            <span>单击添加一条记录</span>
            <div slot="reference" style="color: blue">
              <div class="icon">
-                <i class="el-icon-document-add"  @click="dele(scope.row.thid)"></i>
+                <i class="el-icon-document-add"  @click="add(scope.row.thid)"></i>
              </div>
-
            </div>
          </el-popover>
-
        </template>
      </el-table-column>
-
    </el-table>
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage"
+      :page-sizes="[5, 10, 20, 40]"
+      :page-size="5"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total">
+    </el-pagination>
   </div>
 </template>
 <style>
@@ -73,16 +79,34 @@
       ElIcon,
       ElButton},
     data(){
-        thid:''
+
+
           return{
+            currentPage:1,
+            total:100,
+            size:5,
+            page:1,
+            thid:'',
               teacher:[],
           }
       },
+
     methods:{
+      handleSizeChange:function (val) {
+        this.size=val
+        this.query();
+      },
+      handleCurrentChange:function (val) {
+          this.page=val
+        this.query();
+      },
       handleimg:function (res,file) {
         axios.get("api/upthima?id="+this.thid+"&img="+res).then(res=>{
             this.query();
         })
+      },
+      add:function () {
+        this.$router.push("/Mannerge/teacheradd")
       },
       upth:function (val) {
         this.$router.push({name:'',params:{id:val}})
@@ -100,8 +124,9 @@
         this.thid=res
       },
           query:function () {
-            axios.get("api/finallteacher").then(res=>{
-              this.teacher=res.data
+            axios.get("api/finallteacher?page="+this.page+'&size='+this.size).then(res=>{
+              this.teacher=res.data.list
+              this.total=res.data.total
             }).catch((error)=>{
               console.log(error)
             })

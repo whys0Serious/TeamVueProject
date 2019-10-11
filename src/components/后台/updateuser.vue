@@ -1,5 +1,6 @@
 <template>
-  <div style="width: 500px;margin: auto">
+  <div style="width: 500px;margin: 30px 300px;float: left">
+    <el-page-header content="修改用户" @back="dasds"></el-page-header>
     <el-form
     :model="user"
     >
@@ -27,7 +28,7 @@
           :show-file-list="false"
           :on-success="handleAvatarSuccess"
           :before-upload="beforeAvatarUpload">
-          <i class="el-icon-more"></i>
+          <i class="el-icon-upload"></i>
         </el-upload>
       </el-form-item>
     </el-form>
@@ -39,8 +40,10 @@
   import ElFormItem from "../../../node_modules/element-ui/packages/form/src/form-item";
   import ElInput from "../../../node_modules/element-ui/packages/input/src/input";
   import ElButton from "../../../node_modules/element-ui/packages/button/src/button";
+  import ElPageHeader from "../../../node_modules/element-ui/packages/page-header/src/main";
   export default{
     components: {
+      ElPageHeader,
       ElButton,
       ElInput,
       ElFormItem},
@@ -62,6 +65,9 @@
           })
     },
     methods:{
+      dasds:function () {
+       this.$router.back()
+      },
       handleAvatarSuccess(res, file) {
         this.imageUrl = URL.createObjectURL(file.raw);
         this.user.imageUrl=res
@@ -71,7 +77,6 @@
         this.loading=true
         const isJPG = file.type === 'image/jpeg';
         const isLt2M = file.size / 1024 / 1024 < 2;
-
         if (!isJPG) {
           this.$message.error('上传头像图片只能是 JPG 格式!');
         }
