@@ -14,7 +14,7 @@
 
 <script>
   import axios from  'axios'
-  import echarts from 'echarts'
+ // import echarts from 'echarts'
   export default {
     name: '',
     data () {

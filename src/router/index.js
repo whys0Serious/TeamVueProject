@@ -33,9 +33,9 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 // 引入echarts
 
-import echarts from 'echarts';
+//import echarts from 'echarts';
 
-Vue.use(echarts);
+//Vue.use(echarts);
 
 Vue.use(ElementUI);
 Vue.use(Router)

@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <!--导航栏-->
     <div id="daohang">
       <div class="daohang">
@@ -8,7 +8,6 @@
         <div class="fenlei"><a href="http://localhost:8080/#/HighCourse">高中</a></div>
       </div>
     </div>
-
     <!--轮播图-->
     <div id="lbt">
       <el-carousel height="450px">

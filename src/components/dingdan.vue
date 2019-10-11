@@ -21,8 +21,6 @@
         </div>
       </div>
 
-
-
       <!---->
       <div id="right" >
         <el-table :data="order" style="width: 100%" :row-class-name="tableRowClassName">
@@ -51,6 +49,7 @@
 
 <script>
   import axios from 'axios'
+
   export default {
     methods: {
       tableRowClassName({row, rowIndex}) {
@@ -64,25 +63,38 @@
     },
     data() {
       return {
-        order: [],
-        user:''
+        order:[],
+        user:'',
+        times:''
       }
     },
     mounted(){
       axios.post("/api/findOrderByUid",{uid:this.$route.params.uid}).then(res=>{
+        for(var i=0;i<res.data.length;i++){
+            if(res.data[i].tradtime!=null){
+              var d=new Date(res.data[i].tradtime);
+              res.data[i].tradtime=d.getFullYear() + '-' + (d.getMonth() + 1)
+                + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+            }
+        }
             this.order=res.data;
       })
-      if(this.$route.query!=null){
-        axios.post("/api/alipay_callback",{app_id:this.$route.query.app_id,
-          total_amount:this.$route.query.total_amount,out_trade_no:this.$route.query.out_trade_no}).then(res=>{
-          this.order=res.data;
-        })
-      }
 
+      axios.post("/api/alipay_callback",{app_id:this.$route.query.app_id,
+        total_amount:this.$route.query.total_amount,out_trade_no:this.$route.query.out_trade_no}).then(res=>{
+        for(var i=0;i<res.data.length;i++){
+          if(res.data[i].tradtime!=null){
+            var d=new Date(res.data[i].tradtime);
+            res.data[i].tradtime=d.getFullYear() + '-' + (d.getMonth() + 1)
+              + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+          }
+        }
+        this.order=res.data;
+        window.sessionStorage.setItem("store", this.order);
+      })
       axios.get("api/getuseradnima").then(res=>{
           this.user=res.data;
       })
-
    },
     methods: {
       handleClick(row) {
