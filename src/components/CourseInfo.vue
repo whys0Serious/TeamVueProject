@@ -43,14 +43,14 @@
     },
     mounted(){
       //根据课程编号查询课程详情
-    axios.post("/api/findCourseInfo",{cid:this.$route.params.cid}).then(res=>{
+    axios.post("/api/findCourseInfo",{cid:this.$route.query.cid}).then(res=>{
       var d=new Date(res.data.time);
       res.data.time=d.getFullYear() + '-' + (d.getMonth() + 1)
         + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
           this.course=res.data;
     })
       //根据教师编号查询教师详情
-      axios.post("/api/findTeacherById",{thid:this.$route.params.thid}).then(res=>{
+      axios.post("/api/findTeacherById",{thid:this.$route.query.thid}).then(res=>{
           this.teacher=res.data;
       })
   }

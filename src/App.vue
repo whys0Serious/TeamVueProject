@@ -41,7 +41,7 @@
             </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item><a href="#" @click="logout" class="login">注销</a></el-dropdown-item>
-              <el-dropdown-item><router-link class="login" :to="{name:'dingdan',params:{uid:this.user.uid}}">详细信息</router-link></el-dropdown-item>
+              <el-dropdown-item><router-link class="login" :to="{name:'dingdan',query:{uid:this.user.uid}}">详细信息</router-link></el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
           <el-image style="width: 50px; height: 50px;border-radius:25px;margin-left: 30px" :src="image" ></el-image>

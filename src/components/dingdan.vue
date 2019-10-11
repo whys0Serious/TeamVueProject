@@ -69,7 +69,7 @@
       }
     },
     mounted(){
-      axios.post("/api/findOrderByUid",{uid:this.$route.params.uid}).then(res=>{
+      axios.post("/api/findOrderByUid",{uid:this.$route.query.uid}).then(res=>{
         for(var i=0;i<res.data.length;i++){
             if(res.data[i].tradtime!=null){
               var d=new Date(res.data[i].tradtime);

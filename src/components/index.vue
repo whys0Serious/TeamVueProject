@@ -16,8 +16,6 @@
         </el-carousel-item>
       </el-carousel>
     </div>
-
-
     <!--热门课程-->
     <div id="hotclass">
 
@@ -25,7 +23,7 @@
       <div id="hot_foot">
         <a href="#">
           <div v-for="cs in course">
-            <router-link :to="{name:'CourseInfo',params:{cid:cs.cid,thid:cs.thid,pic_num:cs.picnum}}">
+            <router-link :to="{name:'CourseInfo',query:{cid:cs.cid,thid:cs.thid,pic_num:cs.picnum}}">
           <div class="cardd">
             <div v-if="cs.ctid==1">
               <span class="_8-iAp" >小学</span>
@@ -74,7 +72,7 @@
           </div>
           <a href="#">
           <div v-for="(h,index) in primary">
-            <router-link :to="{name:'CourseInfo',params:{cid:h.cid,thid:h.thid,pic_num:h.picnum}}">
+            <router-link :to="{name:'CourseInfo',query:{cid:h.cid,thid:h.thid,pic_num:h.picnum}}">
             <div v-if="index<6">
             <div v-if="index<2">
             <div class="showcardd">
@@ -158,7 +156,7 @@
           </div>
           <a href="#">
             <div v-for="(jun,index) in junior">
-              <router-link :to="{name:'CourseInfo',params:{cid:jun.cid,thid:jun.thid,pic_num:jun.picnum}}">
+              <router-link :to="{name:'CourseInfo',query:{cid:jun.cid,thid:jun.thid,pic_num:jun.picnum}}">
               <div v-if="index<6">
                 <div v-if="index<2">
                   <div class="showcardd">
@@ -241,7 +239,7 @@
           </div>
           <a href="#">
             <div v-for="(hig,index) in hightc">
-              <router-link :to="{name:'CourseInfo',params:{cid:hig.cid,thid:hig.thid,pic_num:hig.picnum}}">
+              <router-link :to="{name:'CourseInfo',query:{cid:hig.cid,thid:hig.thid,pic_num:hig.picnum}}">
               <div v-if="index<6">
                 <div v-if="index<2">
                   <div class="showcardd">

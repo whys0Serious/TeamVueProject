@@ -24,7 +24,7 @@
       </div>
       <div  v-for="(c,index) in course1">
         <!--携带课程编号，图片编号和教师编号跳转课程详情页发起查询-->
-        <a href="#"><router-link :to="{name:'CourseInfo',params:{cid:c.cid,thid:c.thid,pic_num:c.picnum}}">
+        <a href="#"><router-link :to="{name:'CourseInfo',query:{cid:c.cid,thid:c.thid,pic_num:c.picnum}}">
           <div class="showcarddfoot">
             <div v-if="c.ctid==1">
               <span class="_8-iAp" >小学</span>
@@ -59,7 +59,7 @@
         <h2 style="float: left">语文</h2>
       </div>
       <div  v-for="(m,index) in chinese">
-        <a href="#"><router-link :to="{name:'CourseInfo',params:{cid:m.cid,thid:m.thid,pic_num:m.picnum}}">
+        <a href="#"><router-link :to="{name:'CourseInfo',query:{cid:m.cid,thid:m.thid,pic_num:m.picnum}}">
           <div class="showcarddfoot">
             <div v-if="m.ctid==1">
               <span class="_8-iAp" >小学</span>
@@ -96,7 +96,7 @@
         <h2 style="float: left">数学</h2>
       </div>
       <div  v-for="(c,index) in math">
-        <a href="#"><router-link :to="{name:'CourseInfo',params:{cid:c.cid,thid:c.thid,pic_num:c.picnum}}">
+        <a href="#"><router-link :to="{name:'CourseInfo',query:{cid:c.cid,thid:c.thid,pic_num:c.picnum}}">
           <div class="showcarddfoot">
             <div v-if="c.ctid==1">
               <span class="_8-iAp" >小学</span>
@@ -133,7 +133,7 @@
         <h2 style="float: left">英语</h2>
       </div>
      <div v-for="(e,index) in English">
-       <a href="#" ><router-link :to="{name:'CourseInfo',params:{cid:e.cid,thid:e.thid,pic_num:e.picnum}}">
+       <a href="#" ><router-link :to="{name:'CourseInfo',query:{cid:e.cid,thid:e.thid,pic_num:e.picnum}}">
          <div class="showcarddfoot">
            <div v-if="e.ctid==1">
              <span class="_8-iAp" >小学</span>
@@ -169,7 +169,7 @@
         <h2 style="float: left">全部课程</h2>
       </div>
       <div  v-for="(c,index) in course">
-        <a href="#"><router-link :to="{name:'CourseInfo',params:{cid:c.cid,thid:c.thid,pic_num:c.picnum}}">
+        <a href="#"><router-link :to="{name:'CourseInfo',query:{cid:c.cid,thid:c.thid,pic_num:c.picnum}}">
           <div class="showcarddfoot">
             <div v-if="c.ctid==1">
               <span class="_8-iAp">小学</span>
