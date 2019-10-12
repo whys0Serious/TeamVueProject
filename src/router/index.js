@@ -47,7 +47,6 @@ export default new Router({
       name: 'ind',
       component: ind
     },
-
     {path:'/usershow',
       component:usershow
     },

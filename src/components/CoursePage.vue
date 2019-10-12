@@ -283,7 +283,7 @@
 
   }
 </script>
-<style>
+<style scoped>
 
   #all{
     width: 1000px;
