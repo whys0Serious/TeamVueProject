@@ -124,9 +124,16 @@
       query:function () {
         var url="api/findAll/"+this.params.page+"/"+this.params.size
         axios.get(url).then(res=>{
+          for(var i=0;i<res.data.list.length;i++){
+            if(res.data.list[i].time!=null){
+              var d=new Date(res.data.list[i].time);
+              res.data.list[i].time=d.getFullYear() + '-' + (d.getMonth() + 1)
+                + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+            }}
           this.users=res.data.list;
           this.total=res.data.total;
         })
+
       },
       changePage:function (e) {
         this.params.page=e
