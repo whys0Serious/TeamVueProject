@@ -52,7 +52,7 @@
     </div>
     <div class="cash">
       付款金额：
-      <div><h3>RMB</h3><span class="top2">{{this.$route.params.price}}.00元</span></div>
+      <div><h3>RMB</h3><span class="top2">{{this.$route.query.price}}.00元</span></div>
     </div>
     <button id="button" @click="pay()">提交订单</button>
   </div>
@@ -130,7 +130,6 @@ width: 100%;
               document.body.appendChild(div);
               document.forms [0] .submit();
             }
-
          })
       }
     }
