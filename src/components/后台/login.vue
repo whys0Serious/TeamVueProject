@@ -18,7 +18,7 @@
       </el-form-item>
       <el-checkbox v-model="checked" style="margin-left: 60px">记住密码</el-checkbox>
       <span class="pwd"><a href="http://localhost:8080/#/foegetpwd">忘记密码</a></span>
-      <div class="regisster">没有账号？请<h3><a href="http://localhost:8080/#/registry" >注册</a></h3></div>
+      <div class="regisster">没有账号？请<h3><el-link href="http://localhost:8080/#/registry"  type="primary">注册</el-link></h3></div>
       <el-form-item>
         <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
         <el-button @click="resetForm('ruleForm')" id="btcode">重置</el-button>
@@ -84,8 +84,8 @@
         quanxian:'',
         checked:true,
         ruleForm: {
-          pass: '',
-          name:''
+          name:'',
+          pass: ''
         },
         user:{
           uname:'',

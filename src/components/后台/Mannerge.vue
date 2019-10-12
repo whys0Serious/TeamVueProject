@@ -28,6 +28,7 @@
   </div>
 </template>
 <script>
+  import axios from 'axios'
   export default{
       methods:{
         handleOpen:function () {
@@ -35,7 +36,23 @@
         handleClose:function () {
 
         }
-      }
+      },
+    mounted(){
+          axios.get("api/getuseradnima").then(res=>{
+              if(res.data==null||res.data==""){
+                  this.$router.push("/login")
+              }
+          })
+          axios.get("api/logininterrept").then(res=>{
+          },(error)=>{
+              if(error.response.status==401){
+                this.$message.error("没有权限...~")
+                this.$router.back()
+              }
+
+          })
+    }
+
   }
 </script>
 <style>
