@@ -59,7 +59,7 @@
 </template>
 <style scoped>
   .top3{
-width: 100%;
+      width: 100%;
   }
   .top2{
    color: #a82548;font-size: 30px;margin-left: 20px;
