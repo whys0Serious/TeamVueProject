@@ -41,7 +41,7 @@
            <span>单击添加一条记录</span>
            <div slot="reference" style="color: blue">
              <div class="icon">
-                <i class="el-icon-document-add"  @click="add(scope.row.thid)"></i>
+                <i class="el-icon-document-add"  @click="add()"></i>
              </div>
            </div>
          </el-popover>
@@ -106,7 +106,12 @@
         })
       },
       upth:function (val) {
-        this.$router.push({name:'',params:{id:val}})
+        this.$router.push({
+          path:'/Mannerge/techerupdate/'+val,
+        })
+      },
+      add:function (){
+        this.$router.push("/Mannerge/teacheradd")
       },
       del:function (id) {
         // open() {
@@ -117,7 +122,7 @@
         }).then(() => {
 
           var url="api/deleteteacher"
-          axios.post(url,{cid:id}).then(res=>{
+          axios.post(url,{thid:id}).then(res=>{
             if (res.data!=null){
               this.query()
             }

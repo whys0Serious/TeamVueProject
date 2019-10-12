@@ -14,7 +14,7 @@
 
 <script>
   import axios from  'axios'
- // import echarts from 'echarts'
+  import echarts from 'echarts'
   export default {
     name: '',
     data () {
@@ -40,6 +40,7 @@
         var url1="api/findAlldata"
         axios.get(url1).then(res=>{
           this.list1=res.data
+          console.log(res.data)
           this.ssdad()
         }),
 
@@ -48,7 +49,7 @@
           var xiaoxue = res.data.小学
           var chuzhong = res.data.初中
           var gaozhong = res.data.高中
-
+          console.log(res.data)
           this.opinionData=
           [
             {value:xiaoxue, name:'小学'},

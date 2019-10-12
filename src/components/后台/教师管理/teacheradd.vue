@@ -5,7 +5,7 @@
       <el-form-item label="性別" width="100px"><el-radio label="男" v-model="teacher.thsex"></el-radio>
         <el-radio label="女" v-model="teacher.thsex"></el-radio></el-form-item>
       <el-form-item label="邮箱" width="100px"><el-input type="text" v-model="teacher.themail"></el-input></el-form-item>
-      <el-form-item label="销量" width="100px"><el-input type="text" v-model="teacher.thdetail"></el-input></el-form-item>
+      <el-form-item label="备注" width="100px"><el-input type="text" v-model="teacher.thdetail"></el-input></el-form-item>
       <el-form-item label="图片" width="100px">
           <el-upload action="api/uploaduseima" :before-upload="beforeupload" :on-success="uploadsuccess"
                      :show-file-list="false">
@@ -14,7 +14,7 @@
           </div>
       </el-upload></el-form-item>
     </el-form>
-    <el-button type="">adsa</el-button>
+    <el-button type="primary" @click="add()">添加教师</el-button>
   </div>
 </template>
 <style>
@@ -62,6 +62,9 @@
 <script>
   import ElButton from "../../../../node_modules/element-ui/packages/button/src/button";
   import ElIcon from "../../../../node_modules/element-ui/packages/icon/src/icon";
+
+  import axios from 'axios'
+
   export default{
     components: {
       ElIcon,
@@ -89,6 +92,16 @@
       uploadsuccess:function (res,file) {
           this.imageUrl=URL.createObjectURL(file.raw)
         this.teacher.thpic=res
+      },
+      add:function () {
+        var url="api/addtecaher";
+        axios.post(url,this.teacher).then(res=>{
+          if (res.data!=null) {
+            this.$router.push('/Mannerge/teachershow');
+          }else {
+            alert("添加失败");
+          }
+        })
       },
       beforeupload:function () {
 

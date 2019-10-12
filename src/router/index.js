@@ -12,6 +12,7 @@ import cart from '@/components/后台/cart'
 import data from '@/components/后台/data'
 import teachershow from '@/components/后台/教师管理/teachershow'
 import teacheradd from '@/components/后台/教师管理/teacheradd'
+import techerupdate from '@/components/后台/教师管理/techerupdate'
 
 import foegetpwd from '@/components/后台/foegetpwd'
 import ind from '@/components/index'
@@ -102,6 +103,11 @@ export default new Router({
           path:"teacheradd",
           name:'teacheradd',
           component:teacheradd,
+        },
+        {
+          path:"techerupdate/:id",
+          name:'techerupdate',
+          component:techerupdate,
         },
         {
           path: 'updateuser',
