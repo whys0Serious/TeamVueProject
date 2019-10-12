@@ -94,11 +94,11 @@
       data(){
           return{
             tableData:[{
-              name:this.$route.params.thname,
-              time:this.$route.params.coutime,
-              price:this.$route.params.price,
-              all:this.$route.params.price,
-              course:this.$route.params.cname,
+              name:this.$route.query.thname,
+              time:this.$route.query.coutime,
+              price:this.$route.query.price,
+              all:this.$route.query.price,
+              course:this.$route.query.cname,
               num:1,
             }]
           }
@@ -109,8 +109,7 @@
         console.log('go back');
       },
       pay(){
-
-         axios.post("/api/alipay",{price:this.$route.params.price,cname:this.$route.params.cname}).then(res=> {
+         axios.post("/api/alipay",{price:this.$route.query.price,cname:this.$route.query.cname}).then(res=> {
 
             if(res.status==200){
                 //重定向
