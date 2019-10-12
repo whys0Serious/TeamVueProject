@@ -13,7 +13,7 @@
     <div class="courseinfo"><span>讲师联系邮箱：{{teacher.themail}}</span></div>
     <div id="button"><el-button style="border-radius:0px;background-color: sandybrown;border: 0px; width: 350px;height: 55px">
       <span style="margin-left: 80px;color: white;font-size: large;font-weight: bold"><router-link
-        :to="{name:'cart',params:{thname:teacher.thname,coutime:course.coutime,price:course.price,tips:teacher.themail,
+        :to="{name:'cart',query:{thname:teacher.thname,coutime:course.coutime,price:course.price,tips:teacher.themail,
         cname:course.cname
       }}" ><a @click="logininterrept" style="color:white;" class="a">立即报名</a></router-link></span>
       <span style="color:yellow;font-weight: bolder;margin-left:70px;font-size: large">￥{{course.price}}</span></el-button></div>
@@ -34,7 +34,7 @@
       },
     methods:{
       logininterrept:function () {
-          axios.get("api/logininterrept").then(res=>{
+          axios.get("api/logininterrept1").then(res=>{
 
           },res=>{
               this.$router.push("/login")
@@ -57,7 +57,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .a{
     text-decoration: none;
   }

@@ -1,8 +1,6 @@
 <template>
   <div class="contain">
-    <div style="margin-left: 5px;
-    margin-top: 28px;
-    margin-bottom: 42px;">
+    <div class="top1">
       <el-page-header @back="goBack" content="取消订单" style="color: green">
       </el-page-header>
     </div>
@@ -22,7 +20,7 @@
       <div> <el-divider></el-divider>
       </div>    <el-table
       :data="tableData"
-      style="width: 100%">
+     class="top3">
       <el-table-column
         prop="course"
         label="课程名称">
@@ -54,12 +52,23 @@
     </div>
     <div class="cash">
       付款金额：
-      <div><h3>RMB</h3><span style="color: #3b111d;font-size: 30px;margin-left: 20px">{{this.$route.params.price}}.00元</span></div>
+      <div><h3>RMB</h3><span class="top2">{{this.$route.query.price}}.00元</span></div>
     </div>
     <button id="button" @click="pay()">提交订单</button>
   </div>
 </template>
-<style>
+<style scoped>
+  .top3{
+      width: 100%;
+  }
+  .top2{
+   color: #a82548;font-size: 30px;margin-left: 20px;
+  }
+  .top1{
+ margin-left: 5px;
+    margin-top: 28px;
+    margin-bottom: 42px;
+  }
   .cash{
     width: 150px;
     height: 130px;
@@ -94,11 +103,11 @@
       data(){
           return{
             tableData:[{
-              name:this.$route.params.thname,
-              time:this.$route.params.coutime,
-              price:this.$route.params.price,
-              all:this.$route.params.price,
-              course:this.$route.params.cname,
+              name:this.$route.query.thname,
+              time:this.$route.query.coutime,
+              price:this.$route.query.price,
+              all:this.$route.query.price,
+              course:this.$route.query.cname,
               num:1,
             }]
           }
@@ -109,8 +118,7 @@
         console.log('go back');
       },
       pay(){
-
-         axios.post("/api/alipay",{price:this.$route.params.price,cname:this.$route.params.cname}).then(res=> {
+         axios.post("/api/alipay",{price:this.$route.query.price,cname:this.$route.query.cname}).then(res=> {
 
             if(res.status==200){
                 //重定向
@@ -122,7 +130,6 @@
               document.body.appendChild(div);
               document.forms [0] .submit();
             }
-
          })
       }
     }
