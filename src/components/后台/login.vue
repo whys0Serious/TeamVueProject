@@ -84,8 +84,8 @@
         quanxian:'',
         checked:true,
         ruleForm: {
-          pass: '',
-          name:''
+          name:'',
+          pass: ''
         },
         user:{
           uname:'',
