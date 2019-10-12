@@ -22,7 +22,7 @@
      <el-table-column label="操作" width="200px" fixed="right">
        <template slot-scope="scope">
          <el-popover trigger="hover" placement="left" style="height: 20px">
-           <span style="color: orange">点击修改图片</span>
+           <span style="color: orange">点击编辑</span>
            <div slot="reference" style="color: orange">
              <div class="icon">
               <i class="el-icon-edit" @click="upth(scope.row.thid)" ></i>
@@ -33,7 +33,7 @@
             <span>单击删除</span>
             <div slot="reference" style="color: red">
               <div class="icon">
-               <i class="el-icon-delete"  @click="dele(scope.row.thid)" style="margin-left: 30px;margin-right: 30px" ></i>
+               <i class="el-icon-delete"  @click="del(scope.row.thid)" style="margin-left: 30px;margin-right: 30px" ></i>
               </div>
             </div>
           </el-popover>
@@ -87,20 +87,38 @@
       upth:function (val) {
         this.$router.push({name:'',params:{id:val}})
       },
-      dele:function (val) {
-        axios.get("api/deleteteacher?id="+val).then(res=>{
-            if(res.data){
-                this.query()
-            }else {
-                this.$message.error("删除失败")
+      del:function (id) {
+        // open() {
+        this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+
+          var url="api/deleteteacher"
+          axios.post(url,{cid:id}).then(res=>{
+            if (res.data!=null){
+              this.query()
             }
-        })
+          })
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
+
       },
       upima:function (res) {
         this.thid=res
       },
           query:function () {
             axios.get("api/finallteacher").then(res=>{
+          console.log(res.data)
               this.teacher=res.data
             }).catch((error)=>{
               console.log(error)

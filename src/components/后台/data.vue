@@ -19,40 +19,57 @@
     name: '',
     data () {
       return {
+        // xiaoxue:7,
+        // chuzhong:11,
+        // gaozhong:8,
+        list1:[{details:0,cname:''}],
         charts: '',
         opinion:['小学','初中','高中'],
-        opinionData:[
-          {value:335, name:'小学'},
-          {value:310, name:'初中'},
-          {value:234, name:'高中'},
-        ]
+        opinionData:[]
       }
     },
     //调用
     mounted() {
-      this.$nextTick(function () {
-        this.drawPie('foot_left')
-      })
-      this.$nextTick(function () {
-        this.drawRight('foot_right')
-      })
       this.showdata()
-
+      // alert(this.xiaoxue)
+      // alert(this.xiaoxue)
     },
     methods:{
       showdata:function f() {
-        var url="api/findAll"
 
-        axios.get(url).then(res=>{
-          this.series.data.length
+        var url1="api/findAlldata"
+        axios.get(url1).then(res=>{
+          this.list1=res.data
+          this.ssdad()
+        }),
 
+
+        axios.get("api/findA").then(res=>{
+          var xiaoxue = res.data.小学
+          var chuzhong = res.data.初中
+          var gaozhong = res.data.高中
+
+          this.opinionData=
+          [
+            {value:xiaoxue, name:'小学'},
+            {value:chuzhong, name:'初中'},
+            {value:gaozhong, name:'高中'},
+          ]
+          this.ssdad()
         })
       },
-
-
+      ssdad:function(){
+        this.$nextTick(function () {
+          this.drawRight('foot_right')
+        })
+        this.$nextTick(function () {
+          this.drawPie('foot_left')
+        })
+      },
       drawPie(id){
         this.charts = echarts.init(document.getElementById(id))
         this.charts.setOption({
+          //标题
           title: {
             text: '分类统计',
             left: 'center',
@@ -84,7 +101,7 @@
                 emphasis: {
                   show: true,
                   textStyle: {
-                    fontSize: '30',
+                    fontSize: '10',
                     fontWeight: 'blod'
                   }
                 }
@@ -129,11 +146,11 @@
               radius : '55%',
               center: ['50%', '50%'],
               data:[
-                {value:20, name:'万物皆可“盘”，高考数学刷题还得靠技巧'},
-                {value:310, name:'邮件营销'},
-                {value:274, name:'联盟广告'},
-                {value:235, name:'视频广告'},
-                {value:400, name:'搜索引擎'}
+                {value:this.list1[0].details, name:this.list1[0].cname},
+                {value:this.list1[1].details, name:this.list1[1].cname},
+                {value:this.list1[2].details, name:this.list1[2].cname},
+                {value:this.list1[3].details, name:this.list1[3].cname},
+                {value:this.list1[4].details, name:this.list1[4].cname}
               ].sort(function (a, b) { return a.value - b.value; }),
               roseType: 'radius',
               label: {
@@ -146,7 +163,7 @@
               labelLine: {
                 normal: {
                   lineStyle: {
-                    color: 'rgba(255, 255, 255, 0.3)'
+                    color: '#5a090a'
                   },
                   smooth: 0.2,
                   length: 10,
@@ -155,7 +172,7 @@
               },
               itemStyle: {
                 normal: {
-                  color: '#c23531',
+                  color: '#4987c2',
                   shadowBlur: 200,
                   shadowColor: 'rgba(0, 0, 0, 0.5)'
                 }
@@ -167,7 +184,8 @@
                 return Math.random() * 200;
               }
             }
-          ]
+          ],
+          color:['red', 'green','yellow','blueviolet','red']
         })
       }
 
@@ -206,7 +224,7 @@
     box-shadow:0px 0px  10px 1px #aaa;
   }
   #foot_left{
-    width: 510px;
+    width: 480px;
     height: 480px;
     float: left;
     /*background-color: aquamarine;*/
