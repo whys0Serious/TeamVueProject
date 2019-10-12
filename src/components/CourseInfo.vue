@@ -34,7 +34,7 @@
       },
     methods:{
       logininterrept:function () {
-          axios.get("api/logininterrept").then(res=>{
+          axios.get("api/logininterrept1").then(res=>{
 
           },res=>{
               this.$router.push("/login")
@@ -57,7 +57,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .a{
     text-decoration: none;
   }

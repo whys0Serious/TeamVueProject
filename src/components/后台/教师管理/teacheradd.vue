@@ -13,8 +13,8 @@
             <el-icon class="el-icon-upload"></el-icon>
           </div>
       </el-upload></el-form-item>
-      <
     </el-form>
+    <el-button type="">adsa</el-button>
   </div>
 </template>
 <style>
@@ -60,8 +60,13 @@
 
 </style>
 <script>
+  import ElButton from "../../../../node_modules/element-ui/packages/button/src/button";
+  import ElIcon from "../../../../node_modules/element-ui/packages/icon/src/icon";
   export default{
-      data(){
+    components: {
+      ElIcon,
+      ElButton},
+    data(){
         return{
           imageUrl:'',
 

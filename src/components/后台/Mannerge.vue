@@ -47,7 +47,7 @@
           },(error)=>{
               if(error.response.status==401){
                 this.$message.error("没有权限...~")
-                this.$router.push("/login")
+                this.$router.back()
               }
 
           })
