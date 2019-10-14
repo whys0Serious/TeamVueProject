@@ -1,51 +1,106 @@
 <template>
   <div class="contain">
     <div class="inp">
-      <el-row><h3>登陆</h3></el-row>
-    <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-      <el-form-item label="用户名" prop="name">
-        <el-input v-model="ruleForm.name" @blur="gtepass" placeholder="输入用户名"></el-input>
-      </el-form-item>
-      <el-form-item label="密码" prop="pass">
-        <el-input type="password" v-model="ruleForm.pass" autocomplete="off" placeholder="输入密码"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-select v-model="quanxian" placeholder="请选择登陆类型">
+      <!--<el-row><h3>登陆</h3></el-row>-->
+    <!--<el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">-->
+      <!--<el-form-item label="用户名" prop="name">-->
+        <!--<el-input v-model="ruleForm.name" @blur="gtepass" placeholder="输入用户名"></el-input>-->
+      <!--</el-form-item>-->
+      <!--<el-form-item label="密码" prop="pass">-->
+        <!--<el-input type="password" v-model="ruleForm.pass" autocomplete="off" placeholder="输入密码"></el-input>-->
+      <!--</el-form-item>-->
+      <!--<el-form-item>-->
+        <!--<el-select v-model="quanxian" placeholder="请选择登陆类型">-->
+          <!--<el-option value="用户"></el-option>-->
+          <!--<el-option value="管理员"></el-option>-->
+          <!--<el-option value="superman"></el-option>-->
+        <!--</el-select>-->
+      <!--</el-form-item>-->
+      <!--<el-checkbox v-model="checked" style="margin-left: 60px">记住密码</el-checkbox>-->
+      <!--<span class="pwd"><a href="http://localhost:8080/#/foegetpwd">忘记密码</a></span>-->
+      <!--<div class="regisster">没有账号？请<h3><el-link href="http://localhost:8080/#/registry"  type="primary">注册</el-link></h3></div>-->
+      <!--<el-form-item>-->
+        <!--<el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>-->
+        <!--<el-button @click="resetForm('ruleForm')" id="btcode">重置</el-button>-->
+      <!--</el-form-item>  </el-form>-->
+        <div class="logina">
+          <div style="margin-top: 6%;">
+          <el-row><h3>登 陆</h3></el-row>
+          <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+          <el-form-item label="用户名" prop="name">
+          <el-input v-model="ruleForm.name" @blur="gtepass" placeholder="输入用户名"></el-input>
+          </el-form-item>
+          <el-form-item label="密码" prop="pass">
+          <el-input type="password" v-model="ruleForm.pass" autocomplete="off" placeholder="输入密码"></el-input>
+          </el-form-item>
+          <el-form-item>
+          <el-select v-model="quanxian" placeholder="请选择登陆类型">
           <el-option value="用户"></el-option>
           <el-option value="管理员"></el-option>
           <el-option value="superman"></el-option>
-        </el-select>
-      </el-form-item>
-      <el-checkbox v-model="checked" style="margin-left: 60px">记住密码</el-checkbox>
-      <span class="pwd"><a href="http://localhost:8080/#/foegetpwd">忘记密码</a></span>
-      <div class="regisster">没有账号？请<h3><el-link href="http://localhost:8080/#/registry"  type="primary">注册</el-link></h3></div>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-        <el-button @click="resetForm('ruleForm')" id="btcode">重置</el-button>
-      </el-form-item>  </el-form>
+          </el-select>
+          </el-form-item>
+          <el-checkbox v-model="checked" style="margin-left: 60px">记住密码</el-checkbox>
+          <span class="pwd"><a href="http://localhost:8080/#/foegetpwd">忘记密码</a></span>
+          <div class="regisster">没有账号？请<h3><el-link href="http://localhost:8080/#/registry"  type="primary">注册</el-link></h3></div>
+          <el-form-item style="margin-right: 12%">
+          <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+          <el-button @click="resetForm('ruleForm')" id="btcode">重置</el-button>
+          </el-form-item>  </el-form>
+          </div>
+        </div>
+
+
+
+    </div>
+
+
+
+    <!--底部-->
+    <div class="clasfoot">
+      <img style="width: 100%;height: 300px;" src="http://pylgiouvi.bkt.clouddn.com/htmlfoot.jpg"/>
     </div>
   </div>
 </template>
 <style>
   .regisster{
-    margin-left: 90px;
+    margin-left: 40px;
     margin-top: 40px;
   }
   .pwd{
-    margin-left: 300px;
+    margin-left: 130px;
     font-size: 12px;
 
   }
   .inp{
     margin: auto;
     width: 500px;
-    height: 400px;
+    height: 700px;
+
+  }
+  .clasfoot{
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+    background-color: blueviolet;
   }
   .contain{
     /*background-image: url("../image/login.jpeg");*/
-    height: 650px;
+    height: 1000px;
     margin-left: auto;
-    background-color: aliceblue;
+    background-color: #f5f5f5;
+  }
+  .logina{
+    width: 530px;
+    height: 550px;
+    background-color: white;
+    margin-top: 50px;
+    float: left;
+    box-shadow:0px 0px  10px 1px #aaa;
+  }
+  .el-input{
+    width: 70%;
+    margin-right: 60px;
   }
 </style>
 <script>

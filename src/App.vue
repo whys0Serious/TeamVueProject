@@ -22,7 +22,7 @@
         </div>
         <!--登陆-->
         <div v-if="flag==false">
-        <div class="login"><p><a href="http://localhost:8080/#/login">登陆</a></p></div>
+        <div class="login"><p><a href="http://localhost:8082/#/login">登陆</a></p></div>
         </div>
 
 
