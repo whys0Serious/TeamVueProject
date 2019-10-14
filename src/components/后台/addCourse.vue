@@ -33,6 +33,9 @@
       <el-form-item label="授课时间" style="width: 22%;margin-left: 35%;margin-top: 1%">
         <el-date-picker v-model="course.time" type="datetime" placeholder="选择日期时间"></el-date-picker>
       </el-form-item>
+      <el-form-item label="教师名称" style="width: 22%;margin-left: 35%;margin-top: 1%">
+        <el-input v-model="course.thname"></el-input>
+      </el-form-item>
       <el-form-item label="课时" style="width: 20%;margin-left: 35%;margin-top: 1%" prop="cou_time">
         <el-input v-model.number="course.cou_time"></el-input>
       </el-form-item>
@@ -93,9 +96,9 @@
           price:'',
           info:' ',
           time:'',
-          cou_time: '',
-          mainpic:'',
-          ctid:'',
+          coutime: '',
+          thpic:'',
+          thname:'',
         },
         rules:{    // 就是我们在el-form中绑定的rules，进行表单的验证
           cname: [   // 我们在el-form-item中绑定的prop，就是这里的name，需要大家注意，这具有唯一性
@@ -123,7 +126,7 @@
     methods:{
       handleAvatarSuccess(res, file) {
         this.imageUrl = URL.createObjectURL(file.raw);
-        this.course.mainpic=res
+        this.course.thpic=res
         this.loading=false
       },
       beforeAvatarUpload(file) {

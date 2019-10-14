@@ -26,11 +26,11 @@
             <span style="margin-left: 10px">{{ scope.row.time }}</span>
           </template>
         </el-table-column>
-        <el-table-column label="课程图片" prop="mainpic" width="120" align="center">
+        <el-table-column label="课程图片" prop="thpic" width="120" align="center">
           <template   slot-scope="scope">
             <el-image
               style="width: 100px; height: 100px"
-              :src="scope.row.mainpic"
+              :src="scope.row.thpic"
               ></el-image>
             <el-upload
               v-loading="loading"
