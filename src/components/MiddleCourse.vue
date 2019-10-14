@@ -235,18 +235,46 @@
       })
       axios.post("api/findCourseByName",{cname:"语文",ctid:2}).then(res=>{
         console.log(res.data)
+        for(var i=0;i<res.data.length;i++){
+          if(res.data[i].time!=null){
+            var d=new Date(res.data[i].time);
+            res.data[i].time=d.getFullYear() + '-' + (d.getMonth() + 1)
+              + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+          }
+        }
         this.chinese=res.data;
       })
       axios.post("api/findCourseByName",{cname:"数学",ctid:2}).then(res=>{
         console.log(res.data)
+        for(var i=0;i<res.data.length;i++){
+          if(res.data[i].time!=null){
+            var d=new Date(res.data[i].time);
+            res.data[i].time=d.getFullYear() + '-' + (d.getMonth() + 1)
+              + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+          }
+        }
         this.math=res.data;
       })
       axios.post("api/findCourseByName",{cname:"英语",ctid:2}).then(res=>{
         console.log(res.data)
+        for(var i=0;i<res.data.length;i++){
+          if(res.data[i].time!=null){
+            var d=new Date(res.data[i].time);
+            res.data[i].time=d.getFullYear() + '-' + (d.getMonth() + 1)
+              + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+          }
+        }
         this.English=res.data;
       })
       axios.get("api/findAllCourse/2").then(res=>{
         console.log(res.data)
+        for(var i=0;i<res.data.length;i++){
+          if(res.data[i].time!=null){
+            var d=new Date(res.data[i].time);
+            res.data[i].time=d.getFullYear() + '-' + (d.getMonth() + 1)
+              + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+          }
+        }
         this.course=res.data;
       })
     },

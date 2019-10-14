@@ -23,7 +23,7 @@
       <div id="hot_foot">
         <a href="#">
           <div v-for="cs in course">
-            <router-link :to="{name:'CourseInfo',query:{cid:cs.cid,thid:cs.thid,pic_num:cs.picnum}}">
+            <router-link :to="{name:'CourseInfo',query:{cid:cs.cid,thid:cs.thid,picnum:cs.picnum}}">
           <div class="cardd">
             <div v-if="cs.ctid==1">
               <span class="_8-iAp" >小学</span>
@@ -35,7 +35,7 @@
               <span class="_8-iAp" >高中</span>
             </div>
             <h1 class="classname">{{cs.cname}}</h1>
-            <div class="classtime">时间:{{cs.time}}<ins>|</ins>{{cs.cou_time}} 课时</div>
+            <div class="classtime">时间:{{cs.time}}<ins>|</ins>{{cs.coutime}} 课时</div>
             <div class="tcher">
               <img class="tcherimg" :src="cs.thpic"/>
               <span>{{cs.thname}}</span>
@@ -70,7 +70,7 @@
           </div>
           <a href="#">
           <div v-for="(h,index) in primary">
-            <router-link :to="{name:'CourseInfo',query:{cid:h.cid,thid:h.thid,pic_num:h.picnum}}">
+            <router-link :to="{name:'CourseInfo',query:{cid:h.cid,thid:h.thid,picnum:h.picnum}}">
             <div v-if="index<6">
             <div v-if="index<2">
             <div class="showcardd">
@@ -84,7 +84,7 @@
                 <span class="_8-iAp" >高中</span>
               </div>
               <h1 class="classname">{{h.cname}}</h1>
-              <div class="classtime">时间:{{h.time}}<ins>|</ins>{{h.cou_time}}课时</div>
+              <div class="classtime">时间:{{h.time}}<ins>|</ins>{{h.coutime}}课时</div>
               <div class="tcher">
                 <img class="tcherimg" :src="h.thpic"/>
                 <span>{{h.thname}}</span>
@@ -116,7 +116,7 @@
                   <span class="_8-iAp" >高中</span>
                 </div>
                 <h1 class="classname">{{h.cname}}</h1>
-                <div class="classtime">时间:{{h.time}}<ins>|</ins>{{h.cou_time}}课时</div>
+                <div class="classtime">时间:{{h.time}}<ins>|</ins>{{h.coutime}}课时</div>
                 <div class="tcher">
                   <img class="tcherimg" :src="h.thpic"/>
                   <span>{{h.thname}}</span>
@@ -168,7 +168,7 @@
                       <span class="_8-iAp" >高中</span>
                     </div>
                     <h1 class="classname">{{jun.cname}}</h1>
-                    <div class="classtime">时间:{{jun.time}}<ins>|</ins>{{jun.cou_time}}课时</div>
+                    <div class="classtime">时间:{{jun.time}}<ins>|</ins>{{jun.coutime}}课时</div>
                     <div class="tcher">
                       <img class="tcherimg" :src="jun.thpic"/>
                       <span>{{jun.thname}}</span>
@@ -200,7 +200,7 @@
                       <span class="_8-iAp" >高中</span>
                     </div>
                     <h1 class="classname">{{jun.cname}}</h1>
-                    <div class="classtime">时间:{{jun.time}}<ins>|</ins>{{jun.cou_time}}课时</div>
+                    <div class="classtime">时间:{{jun.time}}<ins>|</ins>{{jun.coutime}}课时</div>
                     <div class="tcher">
                       <img class="tcherimg" :src="jun.thpic"/>
                       <span>{{jun.thname}}</span>
@@ -251,7 +251,7 @@
                       <span class="_8-iAp" >高中</span>
                     </div>
                     <h1 class="classname">{{hig.cname}}</h1>
-                    <div class="classtime">时间:{{hig.time}}<ins>|</ins>{{hig.cou_time}}课时</div>
+                    <div class="classtime">时间:{{hig.time}}<ins>|</ins>{{hig.coutime}}课时</div>
                     <div class="tcher">
                       <img class="tcherimg" :src="hig.thpic"/>
                       <span>{{hig.thname}}</span>
@@ -283,7 +283,7 @@
                       <span class="_8-iAp" >高中</span>
                     </div>
                     <h1 class="classname">{{hig.cname}}</h1>
-                    <div class="classtime">时间:{{hig.time}}<ins>|</ins>{{hig.cou_time}}课时</div>
+                    <div class="classtime">时间:{{hig.time}}<ins>|</ins>{{hig.coutime}}课时</div>
                     <div class="tcher">
                       <img class="tcherimg" :src="hig.thpic"/>
                       <span>{{hig.thname}}</span>
@@ -345,21 +345,49 @@
     mounted(){
       axios.get("api/findShow/推荐").then(res=>{
         console.log(res.data)
+        for(var i=0;i<res.data.length;i++){
+          if(res.data[i].time!=null){
+            var d=new Date(res.data[i].time);
+            res.data[i].time=d.getFullYear() + '-' + (d.getMonth() + 1)
+              + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+          }
+        }
         this.course=res.data;
       })
       //小学
       axios.get("api/findAllCourse/1").then(res=>{
         console.log(res.data)
+        for(var i=0;i<res.data.length;i++){
+          if(res.data[i].time!=null){
+            var d=new Date(res.data[i].time);
+            res.data[i].time=d.getFullYear() + '-' + (d.getMonth() + 1)
+              + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+          }
+        }
         this.primary=res.data;
       })
       //初中
       axios.get("api/findAllCourse/2").then(res=>{
         console.log(res.data)
+        for(var i=0;i<res.data.length;i++){
+          if(res.data[i].time!=null){
+            var d=new Date(res.data[i].time);
+            res.data[i].time=d.getFullYear() + '-' + (d.getMonth() + 1)
+              + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+          }
+        }
         this.junior=res.data;
       })
       //高中
       axios.get("api/findAllCourse/3").then(res=>{
         console.log(res.data)
+        for(var i=0;i<res.data.length;i++){
+          if(res.data[i].time!=null){
+            var d=new Date(res.data[i].time);
+            res.data[i].time=d.getFullYear() + '-' + (d.getMonth() + 1)
+              + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+          }
+        }
         this.hightc=res.data;
       })
     }

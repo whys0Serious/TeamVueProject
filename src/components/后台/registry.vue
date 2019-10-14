@@ -1,5 +1,5 @@
 <template>
-  <div  style="width: 500px;margin-left: 500px;">
+  <div  style="width: 500px; margin-left: 500px;" class="">
     <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
       <el-row><h3>注册</h3></el-row>
       <el-form-item label="用户头像" prop="name">
@@ -29,7 +29,9 @@
       </el-form-item>
       <el-form-item label="邮箱" prop="email">
         <el-input v-model="ruleForm.email" placeholder="请输入邮箱"></el-input>
-        <el-button @click="getcode(ruleForm.email)">获取验证码</el-button><span>{{mes}}</span>
+        <div v-if="codeflag"><el-button @click="getcode(ruleForm.email)">获取验证码</el-button><span>{{mes}}</span></div>
+        <!--<div >{{mess}}</div>-->
+        <div v-if="timerint">在{{countDownNum}}秒后重新获取验证码</div>
       </el-form-item>
       <el-form-item label="验证码" prop="code">
         <el-input v-model="ruleForm.code" placeholder="验证码区分大小写"></el-input>
@@ -65,6 +67,14 @@
     line-height: 178px;
     text-align: center;
   }
+  .logina{
+    width: 530px;
+    height: 550px;
+    background-color: white;
+    margin-top: 50px;
+    float: left;
+    box-shadow:0px 0px  10px 1px #aaa;
+  }
 </style>
 <script>
   import axios from 'axios'
@@ -78,47 +88,50 @@
       ElRow},
     data() {
       var checkName = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error('用户名不能为空'));
-      }else {
-        axios.get("api/checkname?name=" + this.ruleForm.name).then(res => {
-          if (res.data == "用户名重复")
-            return callback(new Error(res.data));
-          else {
-            this.$message.success(res.data)
-            callback();
-          }
-        })
-      }
+        if (!value) {
+          return callback(new Error('用户名不能为空'));
+        }else {
+          axios.get("api/checkname?name=" + this.ruleForm.name).then(res => {
+            if (res.data == "用户名重复")
+              return callback(new Error(res.data));
+            else {
+              this.$message.success(res.data)
+              callback();
+            }
+          })
+        }
       };
       var checkEmail = (rule, value, callback) => {
+        if(value.indexOf('@')>-1){
+        }else {
+          return callback(new Error('邮箱格式不正确'));
+        }
         if (!value) {
           return callback(new Error('邮箱不能为空'));
         }else {
-            axios.get("api/checkmail?mail="+value).then(res=>{
-                if(res.data=="邮箱已经被注册"){
-                  return callback(new Error('邮箱已经被注册'));
-                }else {
-                   callback();
-                }
-
-            })
+          axios.get("api/checkmail?mail="+value).then(res=>{
+            if(res.data=="邮箱已经被注册"){
+              return callback(new Error('邮箱已经被注册'));
+            }else {
+              callback();
+            }
+          })
         }
       };
       var checkCode = (rule, value, callback) => {
         if (!value) {
           return callback(new Error('验证码不能为空'));
         }else {
-            axios.get("api/checkemailcode?code="+value+"&mail="+this.ruleForm.email).then(res=>{
-                if(res.data=='验证码错误'){
-                  return callback(new Error(res.data))
-                }else {
-                  this.$message.success(res.data)
-                  callback();
-                }
-            },res=>{
+          axios.get("api/checkemailcode?code="+value+"&mail="+this.ruleForm.email).then(res=>{
+            if(res.data=='验证码错误'){
               return callback(new Error(res.data))
-            })
+            }else {
+              this.$message.success(res.data)
+              callback();
+            }
+          },res=>{
+            return callback(new Error(res.data))
+          })
         }
 
       };
@@ -142,6 +155,9 @@
         }
       };
       return {
+        timerint:false,
+        countDownNum:60,
+        codeflag:true,
         imageUrl: '',
         mes:'',
         ruleForm: {
@@ -154,11 +170,11 @@
         },
         loading:false,
         user:{
-            uname:'',
-            email:'',
-            pass:'',
-            sex:'',
-           imageUrl: '',
+          uname:'',
+          email:'',
+          pass:'',
+          sex:'',
+          imageUrl: '',
         },
 //        user:{
 //            uname:this.name,
@@ -187,16 +203,16 @@
       };
     },
     methods: {
-        abc:function () {
-          alert(this.ruleForm.sex)
-        },
+      abc:function () {
+        alert(this.ruleForm.sex)
+      },
       handleAvatarSuccess(res, file) {
         this.imageUrl = URL.createObjectURL(file.raw);
         this.user.imageUrl=res
         this.loading=false
       },
       beforeAvatarUpload(file) {
-          this.loading=true
+        this.loading=true
         const isJPG = file.type === 'image/jpeg';
         const isLt2M = file.size / 1024 / 1024 < 2;
 
@@ -222,25 +238,42 @@
                 this.$router.push("/login")
             })
           } else {
-           this.$message.error('提交失败!!');
+            this.$message.error('提交失败!!');
             return false;
           }
         });
 
       },
-      getcode:function (mail) {
-          if(mail=='')
-              this.$message.error("邮箱不能为空")
-          else {
-           '发送中..'
-            axios.get("api/getemailcode?email=" + mail).then(res => {
-              if (res.data == "邮箱验证码获取失败"||res.data == "获取验证码出现异常")
-                this.mes=res.data
-              else{
-                this.mes="验证码已经发送(60秒后失效)"
-              }
-            })
+      countDown:function(){
+        var dhasd=setInterval(() => {
+          this.countDownNum--;
+          console.log(this.messtime)
+          if(this.countDownNum<=0){
+            this.timerint=false
+            clearInterval(dhasd);
           }
+        },1000);
+      },
+      backcode:function () {
+        this.codeflag=true
+      },
+      getcode:function (mail) {
+        if(mail=='')
+          this.$message.error("邮箱不能为空")
+        else {
+          this.codeflag=false;
+          '发送中..'
+          axios.get("api/getemailcode?email=" + mail).then(res => {
+            if (res.data == "邮箱验证码获取失败"||res.data == "获取验证码出现异常")
+              this.mes=res.data
+            else{
+              this.$message.success("验证码已经发送(60秒后失效)",)
+              this.timerint=true
+              setTimeout(this.backcode,60000)
+              this.countDown()
+            }
+          })
+        }
       },
 
       resetForm(formName) {

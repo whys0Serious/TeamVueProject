@@ -37,7 +37,7 @@
         <el-input v-model="course.thname"></el-input>
       </el-form-item>
       <el-form-item label="课时" style="width: 20%;margin-left: 35%;margin-top: 1%" prop="cou_time">
-        <el-input v-model.number="course.cou_time"></el-input>
+        <el-input v-model.number="course.coutime"></el-input>
       </el-form-item>
       <el-form-item label="年级分类" style="width: 20%;margin-left: 35%;margin-top: 1%" prop="ctid">
         <el-select v-model="course.ctid" placeholder="选择小初高">
